@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link href="{% static 'app/css/style.css' %}" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <title></title>
+        <script src="https://kit.fontawesome.com/f2ab765498.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+          var user = '{{request.user}}'
+          function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+        </script>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="#">
+    </head>
+    <body style=" background-color:#e7e1e1;">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="{% url 'home'%}"><img src="{% static "app/images/logo.jpg" %}" width="70px" alt=""></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'home'%}">Trang chủ</a>
+                  </li>
+                  
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Sản phẩm
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Giày thể thao</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">Áo thể thao</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">Quần thể thao</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Giới thiệu</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Liên hệ</a>
+                  </li>
+                </ul>
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Đăng nhập</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Đăng ký</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="cart" href="{% url "cart" %}"><i class="fa-solid fa-cart-shopping" style="color: #000205;"></i>
+                     
+                      <span >{{CartItems}}</span>
+                      
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+            {% block banner %}{% endblock banner %}
+          <div style="background-color:#e7e1e1; min-height:80vh;" class="main-content"> 
+            {% block cart %}{% endblock cart %}
+            {% block checkout %}{% endblock checkout %}
+            {% block main-content %}{% endblock main-content %}
+            {% block infor %}{% endblock infor %}
+          </div>
+        <footer class="footer">Copyright 2023</footer>
+        <script>
+          {% comment %} document.addEventListener("DOMContentLoaded", function() {
+              var btn_cart = document.getElementById("cart");
+              btn_cart.addEventListener("click", function (event) {
+                  alert('Đây là giỏ hàng');
+                  setTimeout(function() {
+                      window.location.href = "{% url "checkout" %}"; // Chuyển hướng sau 1 giây
+                  }, 1000); // 1000 ms = 1 giây
+              });
+          }); {% endcomment %}
+      </script>
+      <script src="{% static "app/js/cart.js" %}"></script>
+    </body>
+</html>

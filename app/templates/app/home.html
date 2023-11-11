@@ -1,0 +1,34 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block main-content %}
+
+{% for product in Products %}
+
+    <div style="background-color:white; width:23%; height:400px; margin-left:20px; margin-top:10px;" class="item_product">
+    
+    <a href="{% url 'product_detail' product_id=product.id %}" class="a">
+        <img src="{{product.image.url}}" style="margin:18px;" width="90%" height="70%" align="center" class="img_product"><br>
+        <div class="border_product"> 
+            <p>Tên sản phẩm: {{product.name}}</p>
+            <p>Giá: {{product.price}}</p>
+        </div>   
+    </a>
+    </div>
+ 
+{% endfor %}
+{% endblock main-content %}
+{% block banner %}
+<div id="carouselExampleDark" class="carousel carousel-dark slide">    
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <img src="{% static "app/images/banner.jpg" %}" class="d-block w-100" alt="..." height="550px">
+        <div class="carousel-caption d-none d-md-block" style="background-color: white;">
+          <h5>Shop Sport</h5>
+          
+        </div>
+      </div>
+      
+    </div>
+   
+  </div>
+{% endblock banner %}

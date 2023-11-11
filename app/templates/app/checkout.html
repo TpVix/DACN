@@ -1,0 +1,76 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block checkout %}
+
+<div class="container">
+
+
+<div class="border_checkout box1">
+<table align="center" style="margin-top:20px;">
+    <tr>
+        <td>Thông tin khách hàng</td>
+    </tr>
+    <tr> 
+        <td>
+            <div class="form-group">
+              <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Name">
+            </div>
+        </td>
+        <td>
+            <div class="form-group">
+                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Email">
+              </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="form-group">
+                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Address">
+              </div>
+        </td>
+        <td>
+            <div class="form-group">
+                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Phone Number">
+              </div>
+        </td>
+    </tr>
+    <tr>
+        <td><input name="" id="" class="btn btn-outline-success" type="button" value="Xác nhập"></td>
+    </tr>
+</table>
+</div>
+<div class="border_checkout box2">
+    <table  width="100%" >
+        <tr>
+            <td height="50px"><a style="text-decoration: none; color: black; border:1px solid black;padding:5px;margin-top:5px;" href="{% url 'cart' %}">← Back cart</a></td>
+        </tr>
+        <tr>  
+            <td>Thông tin sản phẩm</td>
+        </tr>
+        {% for item in items %}
+    <tr >
+        <td width="25%" class="item_cart"><img height="100px" src="{{item.product.ImgURL}}"></td>
+        <td width="35%" class="item_cart">{{item.product.name}}</td>
+        <td width="15%" class="item_cart">{{item.product.price}}</td>
+        <td width="10%" class="item_cart">X {{item.quantity}}</td>
+       
+    </tr>
+        {% endfor %}
+    <tr>
+        <td>
+            <p>Items: {{order.get_cart_items}}</p>
+        </td>
+        <td>
+            <p>Total: {{order.get_cart_total}}</p>
+        </td>
+    </tr>
+</table>
+</div>
+    
+</div>
+
+
+{% endblock checkout %}
+
+
+

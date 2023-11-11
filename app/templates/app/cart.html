@@ -1,0 +1,34 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block cart %}
+<div>
+<div class="tb_cart">
+<table  width="100%" >
+    <tr >
+        <td class="item_cart" width="30%"></td>
+        <td class="item_cart" width="30%">Tên</td>
+        <td class="item_cart" width="25%">Giá</td>
+        <td class="item_cart" width="10%">Số lượng</td>
+        <td class="item_cart" width="5%"></td>
+    </tr>
+    {% for item in items %}
+    <tr >
+        <td class="item_cart"><img height="100px" src="{{item.product.ImgURL}}"></td>
+        <td class="item_cart">{{item.product.name}}</td>
+        <td class="item_cart">{{item.product.price}} VNĐ</td>
+        <td class="item_cart">{{item.quantity}} <p style="display:inline-block;"> <a class="quantity_cart" data-product={{item.product.id}} data-action = "add" style="cursor:pointer;">🔼</a></br><a class="quantity_cart" data-product={{item.product.id}} data-action = "remove" style="cursor:pointer;">🔽</a></p></td>
+        <td class="item_cart">{{order.get_total_item}}</td>
+    </tr>
+    {% endfor %}
+    
+</table>
+
+</div>
+<div class="all_item">
+    <span><a href="{% url 'home'%}" style="text-decoration: none; color: black;border:1px solid black;padding:5px;margin-top:5px;">← Continue Shopping</a></span>
+    <span>Items: {{order.get_cart_items}}</span>
+    <span>Total:  {{order.get_cart_total}} VNĐ</span>
+    <span><a type="button" class="btn_checkout" href="{%url 'checkout'%}">Checkout</a></span>
+</div>
+</div>
+{% endblock cart %}
