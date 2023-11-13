@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% static 'app/css/style.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="">
+    </head>
+    <body style="background-color:#fafafa; position: relative;">
+        <form method = "POST" action="">
+            {% csrf_token %}
+        <div class="bg-register">
+            <a class="navbar-brand" style="display: flex; justify-content: center;" href="{% url 'home'%}"><img src="{% static "app/images/logo.jpg" %}" width="70px" alt=""></a>
+            <h1 style="margin-left: 42%;">Đăng nhập</h1>
+            <ul>
+                <li >
+                  <label for="">Tên đăng nhập:</label>
+                  {% for message in messages %}
+                  <label id="message">{{message}}</label>
+                  {% endfor %}
+                  <br>
+                  <input type="text" class="ip-item"  name="username" id="" aria-describedby="helpId" placeholder="">
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <label for="">Mật khẩu:</label><br>
+                    <input type="password" class="ip-item" name="password" id="" aria-describedby="helpId" placeholder="">
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <label for="">Chưa có tài khoản ? <a href={% url "register" %}>Đăng ký</a></label>
+                </li>
+                <li>
+                    <input type="submit" class="btn-login" name="" id="" value="Đăng nhập" placeholder="">
+                </li>
+            </ul>
+        </div>
+        <script src="" async defer></script>
+    </form>
+    </body>
+</html>

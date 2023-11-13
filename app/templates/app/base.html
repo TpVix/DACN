@@ -73,12 +73,21 @@
                   <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <ul class="navbar-nav mb-2 mb-lg-0">
+                  {% if request.user.is_authenticated %}
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Đăng nhập</a>
+                      <span class="nav-link">{{ request.user }}</span>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Đăng ký</a>
+                      <a class="nav-link" href="{% url 'logout' %}">Đăng xuất</a>
                   </li>
+                  {% else %}
+                  <li class="nav-item nav-login">
+                      <a class="nav-link" href="{% url 'login' %}">Đăng nhập</a>
+                  </li>
+                  <li class="nav-item nav-register">
+                      <a class="nav-link" href="{% url 'register' %}">Đăng ký</a>
+                  </li>
+                  {% endif %}
                   <li class="nav-item">
                     <a class="nav-link" id="cart" href="{% url "cart" %}"><i class="fa-solid fa-cart-shopping" style="color: #000205;"></i>
                      
@@ -91,23 +100,15 @@
             </div>
           </nav>
             {% block banner %}{% endblock banner %}
-          <div style="background-color:#e7e1e1; min-height:80vh;" class="main-content"> 
+          <div style="background-color:#fafafa; min-height:80vh;" class="main-content"> 
             {% block cart %}{% endblock cart %}
             {% block checkout %}{% endblock checkout %}
             {% block main-content %}{% endblock main-content %}
             {% block infor %}{% endblock infor %}
           </div>
         <footer class="footer">Copyright 2023</footer>
-        <script>
-          {% comment %} document.addEventListener("DOMContentLoaded", function() {
-              var btn_cart = document.getElementById("cart");
-              btn_cart.addEventListener("click", function (event) {
-                  alert('Đây là giỏ hàng');
-                  setTimeout(function() {
-                      window.location.href = "{% url "checkout" %}"; // Chuyển hướng sau 1 giây
-                  }, 1000); // 1000 ms = 1 giây
-              });
-          }); {% endcomment %}
+        
+        
       </script>
       <script src="{% static "app/js/cart.js" %}"></script>
     </body>

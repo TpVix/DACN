@@ -1,5 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+# change forms register django
+class CreaterUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username','email','first_name','last_name','password1','password2']
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=200)
@@ -24,18 +30,9 @@ class Product(models.Model):
             url = ''
         return url
 
-class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=False)
-    name = models.CharField(max_length=200, null=True, blank=False)
-    email = models.CharField(max_length=200, null=True, blank=False)
-    shipping_address = models.CharField(max_length=200, null=True, blank=False)
-    phone_number = models.CharField(max_length=20, null=True, blank=False)
-
-    def __str__(self):
-        return self.name
 
 class Order(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=False)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=False)
     order_date = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=False)
     transaction_id = models.CharField(max_length=200, null=True)
