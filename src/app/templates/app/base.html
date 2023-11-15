@@ -56,9 +56,6 @@
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="#">Giày thể thao</a></li>
                       <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Áo thể thao</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Quần thể thao</a></li>
                     </ul>
                   </li>
                   <li class="nav-item">
@@ -68,14 +65,15 @@
                     <a class="nav-link" href="#">Liên hệ</a>
                   </li>
                 </ul>
-                <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" role="search" method="POST" action={% url "search" %}>
+                  {% csrf_token %}
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
                   <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <ul class="navbar-nav mb-2 mb-lg-0">
                   {% if request.user.is_authenticated %}
                   <li class="nav-item">
-                      <span class="nav-link">{{ request.user }}</span>
+                      <span class="nav-link">Xin chào: {{ request.user }}</span>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="{% url 'logout' %}">Đăng xuất</a>
@@ -105,6 +103,7 @@
             {% block checkout %}{% endblock checkout %}
             {% block main-content %}{% endblock main-content %}
             {% block infor %}{% endblock infor %}
+            {% block search %}{% endblock search %}
           </div>
         <footer class="footer">Copyright 2023</footer>
         

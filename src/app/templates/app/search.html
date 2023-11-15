@@ -1,0 +1,19 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block search %}
+        <h2>Bạn muốn tìm: {{searched}}</h2>
+        {% for product in keys %}
+
+        <div style="background-color:white; width:23%; height:400px; margin-left:20px; margin-top:10px;" class="item_product">
+    
+        <a href="{% url 'product_detail' product_id=product.id %}" class="a">
+        <img src="{{product.image.url}}" style="margin:18px;" width="90%" height="70%" align="center" class="img_product"><br>
+        <div class="border_product"> 
+            <p>Tên sản phẩm: {{product.name}}</p>
+            <p>Giá: {{product.price}}</p>
+        </div>   
+        </a>
+        </div>
+ 
+        {% endfor %}  
+{% endblock search %}

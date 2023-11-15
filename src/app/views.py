@@ -5,6 +5,14 @@ import json
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+#Category
+def category(request):
+    categories = Category.objects.filter(is_sub = False)
+    active_category = request.GETT.get('category','')
+    if active_category:
+        products = Product.objects.filter(category__slug=active_category)
+    context={'categories': categories, 'products': products, 'active_category':active_category}
+    return render(request,'app/home.html',context)
 # Create your views here.
 def home(request):
     if request.user.is_authenticated:
@@ -105,3 +113,24 @@ def loginuser(request):
 def logoutuser(request):
     logout(request)
     return redirect('login')
+
+def search(request):
+    searched = ''
+    keys = []
+    cartItems = 0
+    if request.method == "POST":
+        searched = request.POST['searched']
+        keys = Product.objects.filter(name__contains=searched)
+        
+    if request.user.is_authenticated:
+        customer = request.user
+        order, created = Order.objects.get_or_create(customer=customer, complete = False)
+        items = order.orderproduct_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items=[]
+        order={'get_cart_items':0, 'get_cart_total':0}
+        cartItems = order['get_cart_items']
+  
+    Products = Product.objects.all()
+    return render(request, 'app/search.html',{'searched':searched,'keys':keys,'cartItems':cartItems,'Products': Products})

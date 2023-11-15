@@ -8,8 +8,10 @@ class CreaterUserForm(UserCreationForm):
         fields = ['username','email','first_name','last_name','password1','password2']
 # Create your models here.
 class Category(models.Model):
-    name = models.CharField(max_length=200)
-
+    name = models.CharField(max_length=200, null=True)
+    sub_category = models.ForeignKey('self', on_delete=models.CASCADE, related_name='sub_categories', null=True, blank=True)
+    is_sub = models.BooleanField(default=True)
+    slug = models.SlugField(max_length=200, null=True)
     def __str__(self):
         return self.name
 
@@ -17,7 +19,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200, null=True, blank=False)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=0)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=False)
+    category = models.ManyToManyField(Category, related_name='Categories')
     image = models.ImageField(null=True,blank=True)
    
     def __str__(self):
