@@ -1,8 +1,7 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% block search %}
-        <h2>Bạn muốn tìm: {{searched}}</h2>
-        {% for product in keys %}
+        {% for product in products %}
 
         <div style="background-color:white; width:23%; height:400px; margin-left:20px; margin-top:10px;" class="item_product">
     

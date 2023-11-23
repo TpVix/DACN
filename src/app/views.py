@@ -8,11 +8,11 @@ from django.contrib import messages
 #Category
 def category(request):
     categories = Category.objects.filter(is_sub = False)
-    active_category = request.GETT.get('category','')
+    active_category = request.GET.get('category','')
     if active_category:
         products = Product.objects.filter(category__slug=active_category)
     context={'categories': categories, 'products': products, 'active_category':active_category}
-    return render(request,'app/home.html',context)
+    return render(request,'app/category.html',context)
 # Create your views here.
 def home(request):
     if request.user.is_authenticated:
@@ -24,8 +24,9 @@ def home(request):
         items=[]
         order={'get_cart_items':0, 'get_cart_total':0}
         cartItems = order['get_cart_items']
+    categories = Category.objects.filter(is_sub = False)
     Products = Product.objects.all()
-    context={'Products': Products, 'CartItems': cartItems}
+    context={'categories': categories,'Products': Products, 'CartItems': cartItems}
     return render(request,'app/home.html',context)
 def cart(request):
     if request.user.is_authenticated:
@@ -37,7 +38,8 @@ def cart(request):
         items=[]
         order={'get_cart_items':0, 'get_cart_total':0}
         cartItems = order['get_cart_items']
-    context={'items':items, 'order': order,'CartItems': cartItems}
+    categories = Category.objects.filter(is_sub = False)
+    context={'categories': categories,'items':items, 'order': order,'CartItems': cartItems}
     return render(request,'app/cart.html', context)
 def checkout(request):
     if request.user.is_authenticated:
@@ -49,7 +51,8 @@ def checkout(request):
         items=[]
         order={'get_cart_items':0, 'get_cart_total':0}
         cartItems = order['get_cart_items']
-    context={'items':items, 'order': order, 'CartItems': cartItems}
+    categories = Category.objects.filter(is_sub = False)
+    context={'categories': categories,'items':items, 'order': order, 'CartItems': cartItems}
     return render(request,'app/checkout.html', context)
 
 def product_detail(request, product_id):
@@ -120,7 +123,7 @@ def search(request):
     cartItems = 0
     if request.method == "POST":
         searched = request.POST['searched']
-        keys = Product.objects.filter(name__contains=searched)
+        keys = Product.objects.filter(name__icontains=searched)
         
     if request.user.is_authenticated:
         customer = request.user

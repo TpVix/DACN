@@ -145,7 +145,7 @@ ul{
     margin-bottom: 10px;
 }
 .btn-register:hover{
-    
+    cursor: pointer;
     background-color: #198754;
 }
 .btn-login{
@@ -156,6 +156,9 @@ ul{
     margin-bottom: 10px;
 }
 .btn-login:hover{
-    
+    cursor: pointer;
     background-color: #198754;
+}
+.d-block {
+    display: block;
 }

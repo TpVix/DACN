@@ -53,9 +53,11 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Sản phẩm
                     </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Giày thể thao</a></li>
-                      <li><hr class="dropdown-divider"></li>
+                    <ul style="padding: 0px;" class="dropdown-menu">
+                      {% for category in categories %}
+                      <li><a class="dropdown-item" href="{% url "category" %}?category={{category.slug}}">{{category.name}}</a></li>
+                      <hr class="dropdown-divider">
+                      {% endfor %}
                     </ul>
                   </li>
                   <li class="nav-item">
@@ -110,5 +112,6 @@
         
       </script>
       <script src="{% static "app/js/cart.js" %}"></script>
+      <script src="{% static "app/js/base.js" %}"></script>
     </body>
 </html>

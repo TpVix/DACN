@@ -9,8 +9,8 @@
     <a href="{% url 'product_detail' product_id=product.id %}" class="a">
         <img src="{{product.image.url}}" style="margin:18px;" width="90%" height="70%" align="center" class="img_product"><br>
         <div class="border_product"> 
-            <p>Tên sản phẩm: {{product.name}}</p>
-            <p>Giá: {{product.price}}</p>
+            <p>{{product.name}}</p>
+            <p>Giá: {{product.price}} VNĐ</p>
         </div>   
     </a>
     </div>
@@ -20,9 +20,12 @@
 {% block banner %}
 <div id="carouselExampleDark" class="carousel carousel-dark slide">    
     <div class="carousel-inner">
-      <div class="carousel-item active" data-bs-interval="10000">
-        <img src="{% static "app/images/banner.jpg" %}" class="d-block w-100" alt="..." height="550px">
-        <div class="carousel-caption d-none d-md-block" style="background-color: white;">
+      <div class="carousel-item active" data-bs-interval="10000" >
+        <div id="banner">
+          <a href="http://127.0.0.1:8000/products/1/"><img src="{% static "app/images/banner1.jpg" %}" class="w-100" alt="..." height="550px"></a>
+          <a href="http://127.0.0.1:8000/products/12/"><img src="{% static "app/images/banner2.jpg" %}" class="w-100" alt="..." height="550px"></a>   
+        </div>
+       <div class="carousel-caption d-none d-md-block" style="background-color: white; width:200px; left:43%">
           <h5>Shop Sport</h5>
           
         </div>
@@ -30,5 +33,5 @@
       
     </div>
    
-  </div>
+</div>
 {% endblock banner %}
