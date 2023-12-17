@@ -18,15 +18,15 @@ function changeImage() {
     showImage(currentImageIndex);
 
     // Thay đổi href của thẻ a tương ứng với hình ảnh
-   links.forEach((link, i) => {
-    if (i === currentImageIndex) {
-        if (currentImageIndex === 0) {
-            link.setAttribute('href', 'http://127.0.0.1:8000/products/1/');
-        } else if (currentImageIndex === 1) {
-            link.setAttribute('href', 'http://127.0.0.1:8000/products/12/');
-        } 
-    }
-});
+//    links.forEach((link, i) => {
+//     if (i === currentImageIndex) {
+//         if (currentImageIndex === 0) {
+//             link.setAttribute('href', 'product_detail/1/');
+//         } else if (currentImageIndex === 1) {
+//             link.setAttribute('href', 'product_detail/12/');
+//         } 
+//     }
+// });
 
 }
 setInterval(changeImage, 3000);

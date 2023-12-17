@@ -1,12 +1,15 @@
+from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from ckeditor.fields import RichTextField
+from django.shortcuts import get_object_or_404
 # change forms register django
 class CreaterUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username','email','first_name','last_name','password1','password2']
-# Create your models here.
+
 class Category(models.Model):
     name = models.CharField(max_length=200, null=True)
     sub_category = models.ForeignKey('self', on_delete=models.CASCADE, related_name='sub_categories', null=True, blank=True)
@@ -17,7 +20,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=200, null=True, blank=False)
-    description = models.TextField()
+    description = RichTextField()
     price = models.DecimalField(max_digits=10, decimal_places=0)
     category = models.ManyToManyField(Category, related_name='Categories')
     image = models.ImageField(null=True,blank=True)
@@ -62,3 +65,38 @@ class OrderProduct(models.Model):
     def get_total(self):
         total = self.product.price * self.quantity
         return total
+
+class CustomerPurchase(models.Model):
+    customer_name = models.CharField(max_length=100)
+    address = models.CharField(max_length=200)
+    phone_number = models.CharField(max_length=20)
+    products = models.ManyToManyField(Product, through='PurchaseItem')
+    purchase_date = models.DateTimeField(default=timezone.now)
+    total_quantity = models.PositiveIntegerField(default=0)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+
+    def __str__(self):
+        local_purchase_date = timezone.localtime(self.purchase_date)
+        return f"{self.customer_name} Mua hàng vào lúc {local_purchase_date.strftime('%Y-%m-%d %H:%M:%S')}"
+
+class PurchaseItem(models.Model):
+    customer_purchase = models.ForeignKey(CustomerPurchase, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)  # Hoặc bất kỳ trường nào khác bạn muốn lưu thông tin sản phẩm
+
+    # Các trường thông tin khác nếu cần
+
+    def __str__(self):
+        return f"Tên sản phẩm: {self.product.name} - Số lượng: {self.quantity}"
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        # Tính toán tổng giá và tổng số lượng của tất cả PurchaseItem liên quan
+        purchase = self.customer_purchase
+        purchase_items = PurchaseItem.objects.filter(customer_purchase=purchase)
+        total_quantity = purchase_items.aggregate(models.Sum('quantity'))['quantity__sum'] or 0
+        total_price = sum(item.product.price * item.quantity for item in purchase_items)
+        
+        # Cập nhật giá trị tổng giá và tổng số lượng vào CustomerPurchase
+        purchase.total_quantity = total_quantity
+        purchase.total_price = total_price
+        purchase.save()

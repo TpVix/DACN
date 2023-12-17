@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, JsonResponse
 from .models import *
@@ -5,6 +6,7 @@ import json
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from .forms import *
 #Category
 def category(request):
     categories = Category.objects.filter(is_sub = False)
@@ -29,6 +31,8 @@ def home(request):
     context={'categories': categories,'Products': Products, 'CartItems': cartItems}
     return render(request,'app/home.html',context)
 def cart(request):
+    if not request.user.is_authenticated:
+        return redirect('login') 
     if request.user.is_authenticated:
         customer = request.user
         order, created = Order.objects.get_or_create(customer=customer, complete = False)
@@ -41,21 +45,68 @@ def cart(request):
     categories = Category.objects.filter(is_sub = False)
     context={'categories': categories,'items':items, 'order': order,'CartItems': cartItems}
     return render(request,'app/cart.html', context)
-def checkout(request):
-    if request.user.is_authenticated:
-        customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete = False)
-        items = order.orderproduct_set.all()
-        cartItems = order.get_cart_items
-    else:
-        items=[]
-        order={'get_cart_items':0, 'get_cart_total':0}
-        cartItems = order['get_cart_items']
-    categories = Category.objects.filter(is_sub = False)
-    context={'categories': categories,'items':items, 'order': order, 'CartItems': cartItems}
-    return render(request,'app/checkout.html', context)
 
-def product_detail(request, product_id):
+def checkout(request):
+    order = None
+    
+    if request.method == 'POST':
+        form = CheckoutForm(request.POST)
+        if form.is_valid():
+            customer_name = form.cleaned_data['customer_name']
+            address = form.cleaned_data['address']
+            phone_number = form.cleaned_data['phone_number']
+
+            if request.user.is_authenticated:
+                # Lấy thông tin giỏ hàng của người dùng
+                customer = request.user
+                order, created = Order.objects.get_or_create(customer=customer, complete=False)
+                cart_items = order.orderproduct_set.all()
+
+                # Tạo CustomerPurchase
+                purchase = CustomerPurchase.objects.create(
+                    customer_name=customer_name,
+                    address=address,
+                    phone_number=phone_number
+                )
+
+                # Lưu thông tin sản phẩm từ giỏ hàng vào CustomerPurchase
+                for item in cart_items:
+                    PurchaseItem.objects.create(
+                        customer_purchase=purchase,
+                        product=item.product,
+                        quantity=item.quantity
+                    )
+
+                # Đánh dấu đơn hàng đã hoàn thành
+                order.complete = True
+                order.save()
+
+            # Xóa giỏ hàng sau khi thanh toán
+            request.session['cart'] = {}
+            # Chuyển hướng đến trang thành công sau khi nhập liệu
+            return redirect('home')
+
+    else:
+        form = CheckoutForm()
+
+    if request.user.is_authenticated:
+        customer = request.user
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+
+    total_quantity = 0
+    total_price = Decimal('0.00')
+    # Get cart items from the order if it exists
+    if order:
+        items = order.orderproduct_set.all()
+        total_quantity = order.get_cart_items
+        total_price = order.get_cart_total
+    else:
+        items = []
+        
+    return render(request, 'app/checkout.html', {'form': form ,'items': items,'total_quantity': total_quantity,'total_price': total_price})
+
+
+def product_detail(request, id):
     if request.user.is_authenticated:
         customer = request.user
         order, created = Order.objects.get_or_create(customer=customer, complete = False)
@@ -65,9 +116,11 @@ def product_detail(request, product_id):
         items=[]
         order={'get_cart_items':0, 'get_cart_total':0}
         cartItems = order['get_cart_items']
-    product = get_object_or_404(Product, pk=product_id)
-    context={'product': product, 'CartItems': cartItems}
-    return render(request, 'app/infor_products.html',context)
+    products = Product.objects.filter(id=id)
+    categories = Category.objects.filter(is_sub=False)
+    context = {'products': products, 'categories': categories, 'items': items, 'order': order, 'CartItems': cartItems}
+    return render(request, 'app/product_detail.html', context)
+
 
 def updateItem(request):
     data = json.loads(request.body)
@@ -137,3 +190,5 @@ def search(request):
   
     Products = Product.objects.all()
     return render(request, 'app/search.html',{'searched':searched,'keys':keys,'cartItems':cartItems,'Products': Products})
+
+

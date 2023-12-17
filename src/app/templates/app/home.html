@@ -4,12 +4,14 @@
 
 {% for product in Products %}
 
-    <div style="background-color:white; width:23%; height:400px; margin-left:20px; margin-top:10px;" class="item_product">
+    <div style="background-color:white; width:21.5%; height:300px; margin-left:20px; margin-top:10px;" class="item_product">
     
-    <a href="{% url 'product_detail' product_id=product.id %}" class="a">
-        <img src="{{product.image.url}}" style="margin:18px;" width="90%" height="70%" align="center" class="img_product"><br>
-        <div class="border_product"> 
-            <p>{{product.name}}</p>
+    <a href="{% url 'product_detail' id=product.id%}" class="a" style="width:100%;">
+        <img class="border_product" src="{{product.image.url}}" style="margin-bottom: 18px;margin-top: 18px; margin-left:5%;" width="87%" height="60%" align="center" class="img_product"><br>
+        <hr style="margin:0px; width:100%;">
+        <div style="width: 94%;margin-left: 3%;"> 
+            <p style="margin:0;">{{product.name}}</p>
+            
             <p>Giá: {{product.price}} VNĐ</p>
         </div>   
     </a>
@@ -22,8 +24,8 @@
     <div class="carousel-inner">
       <div class="carousel-item active" data-bs-interval="10000" >
         <div id="banner">
-          <a href="http://127.0.0.1:8000/products/1/"><img src="{% static "app/images/banner1.jpg" %}" class="w-100" alt="..." height="550px"></a>
-          <a href="http://127.0.0.1:8000/products/12/"><img src="{% static "app/images/banner2.jpg" %}" class="w-100" alt="..." height="550px"></a>   
+          <a ><img src="{% static "app/images/banner1.jpg" %}"  alt="..."  style="width:80%; margin-left:10%; height:400px;"></a>
+          <a ><img src="{% static "app/images/banner2.jpg" %}"  alt="..."  style="width:80%; margin-left:10%;height:400px;"></a>   
         </div>
        <div class="carousel-caption d-none d-md-block" style="background-color: white; width:200px; left:43%">
           <h5>Shop Sport</h5>

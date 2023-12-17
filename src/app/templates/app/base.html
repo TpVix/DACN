@@ -36,8 +36,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="#">
     </head>
-    <body style=" background-color:#e7e1e1;">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <body style="background-color:#f5f5f5;">
+        <nav class="navbar navbar-expand-lg" style="background-color:black;">
             <div class="container-fluid">
               <a class="navbar-brand" href="{% url 'home'%}"><img src="{% static "app/images/logo.jpg" %}" width="70px" alt=""></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,8 +69,8 @@
                 </ul>
                 <form class="d-flex" role="search" method="POST" action={% url "search" %}>
                   {% csrf_token %}
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
-                  <button class="btn btn-outline-success" type="submit">Search</button>
+                  <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search" name="searched">
+                  <button class="btn btn-outline-success" type="submit" style="color: white;">Tìm kiếm</button>
                 </form>
                 <ul class="navbar-nav mb-2 mb-lg-0">
                   {% if request.user.is_authenticated %}
@@ -89,7 +89,7 @@
                   </li>
                   {% endif %}
                   <li class="nav-item">
-                    <a class="nav-link" id="cart" href="{% url "cart" %}"><i class="fa-solid fa-cart-shopping" style="color: #000205;"></i>
+                    <a class="nav-link" id="cart" href="{% url "cart" %}"><i class="fa-solid fa-cart-shopping" style="color: white;"></i>
                      
                       <span >{{CartItems}}</span>
                       
@@ -100,7 +100,7 @@
             </div>
           </nav>
             {% block banner %}{% endblock banner %}
-          <div style="background-color:#fafafa; min-height:80vh;" class="main-content"> 
+          <div style=" min-height:80vh; width:80%;margin-left:11%;" class="main-content"> 
             {% block cart %}{% endblock cart %}
             {% block checkout %}{% endblock checkout %}
             {% block main-content %}{% endblock main-content %}

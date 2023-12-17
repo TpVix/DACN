@@ -1,8 +1,16 @@
 from django.contrib import admin
 from .models import *
-# Register your models here.
+from .forms import ProductAdminForm
 
+class ProductModelAdmin(admin.ModelAdmin):
+    form = ProductAdminForm
+
+admin.site.register(Product, ProductModelAdmin)
+# Register your models here.
+admin.site.register(PurchaseItem)
+admin.site.register(CustomerPurchase)
 admin.site.register(Category)
-admin.site.register(Product)
 admin.site.register(Order)
 admin.site.register(OrderProduct)
+
+

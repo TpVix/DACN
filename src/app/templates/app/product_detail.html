@@ -1,0 +1,44 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block infor %}
+
+{% for product in products %}
+
+<div class="infor_product" style=" width:80%; margin-left:10%;" > 
+<div style="background-color:white; width: 100%;height: 100%;padding:10px;box-shadow: 0px 0px 1px 0px;margin-top: 8px;">
+    <img style="width:100%;margin-top: 3px;" src="{{ product.image.url }}" alt="">  
+</div>
+<div style="  box-shadow: 0px 0px 1px 0px;background-color:white; width:100%; height: 424px;display: flex;flex-wrap: nowrap;justify-content: center;align-items: center;flex-direction: column;margin-top: 8px;">
+    <h2 style="text-align:center;">{{ product.name }}</h2>
+    <h2>Giá: {{ product.price }} VNĐ</h2>
+    {% if request.user.is_authenticated %}
+    <div class="btn_css_cart">
+        <a data-product={{product.id}} data-action = "add" class="update-cart" style=" color: black;margin-top: 10px;" href="#">Thêm vào giỏ hàng</a>
+    </div>
+    {% else %}
+    
+        <p>Vui lòng đăng nhập để thêm vào giỏ hàng<p>
+    
+    {% endif %}
+</div>
+</div>
+<div class="infor_product" style=" margin-top: 20px;
+margin-left: 10%;
+box-shadow: 0px 0px 5px -2px;
+min-height: 85vh;
+width: 80%;
+background-color: white;" > 
+    <div style="width:97%; margin-top:20px;">
+        {{ product.description|safe }}
+    </div>
+    
+
+</div>
+
+
+{% endfor %}
+{% endblock infor %}
+
+
+
+

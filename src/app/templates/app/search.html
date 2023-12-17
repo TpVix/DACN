@@ -4,13 +4,15 @@
         <h2>Bạn muốn tìm: {{searched}}</h2>
         {% for product in keys %}
 
-        <div style="background-color:white; width:23%; height:400px; margin-left:20px; margin-top:10px;" class="item_product">
+        <div style="background-color:white; width:21.5%; height:300px; margin-left:20px; margin-top:10px;" class="item_product">
     
-        <a href="{% url 'product_detail' product_id=product.id %}" class="a">
-        <img src="{{product.image.url}}" style="margin:18px;" width="90%" height="70%" align="center" class="img_product"><br>
-        <div class="border_product"> 
-            <p>{{product.name}}</p>
-            <p>Giá: {{product.price}} VNĐ</p>
+            <a href="{% url 'product_detail' id=product.id%}" class="a" style="width:100%;">
+                <img class="border_product" src="{{product.image.url}}" style="margin-bottom: 18px;margin-top: 18px; margin-left:5%;" width="87%" height="60%" align="center" class="img_product"><br>
+                <hr style="margin:0px; width:100%;">
+                <div style="width: 94%;margin-left: 3%;"> 
+                    <p style="margin:0;">{{product.name}}</p>
+                    
+                    <p>Giá: {{product.price}} VNĐ</p>
         </div>   
         </a>
         </div>

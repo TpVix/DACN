@@ -4,41 +4,23 @@
 
 <div class="container">
 
-
+<form method="post">
 <div class="border_checkout box1">
-<table align="center" style="margin-top:20px;">
-    <tr>
-        <td>Thông tin khách hàng</td>
-    </tr>
-    <tr> 
-        <td>
-            <div class="form-group">
-              <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Name">
-            </div>
-        </td>
-        <td>
-            <div class="form-group">
-                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Email">
-              </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="form-group">
-                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Address">
-              </div>
-        </td>
-        <td>
-            <div class="form-group">
-                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Phone Number">
-              </div>
-        </td>
-    </tr>
-    <tr>
-        <td><input name="" id="" class="btn btn-outline-success" type="button" value="Xác nhập"></td>
-    </tr>
-</table>
-</div>
+    <div style="padding:8px;">
+        <h2>Thông tin khách hàng</h2>
+        <div>
+            {% csrf_token %}
+            {{ form.as_p }}
+        </div>
+        <div>
+            <input name="" id="" class="btn btn-outline-success" type="submit" value="Xác nhập">
+        </div>
+    </div>
+</div> 
+</form>
+<!-- checkout.html -->
+
+
 <div class="border_checkout box2">
     <table  width="100%" >
         <tr>
@@ -58,10 +40,10 @@
         {% endfor %}
     <tr>
         <td>
-            <p>Items: {{order.get_cart_items}}</p>
+            <p>Số lượng: {{ total_quantity }}</p>
         </td>
         <td>
-            <p>Total: {{order.get_cart_total}}</p>
+            <p>Tổng: {{ total_price }}</p>
         </td>
     </tr>
 </table>
