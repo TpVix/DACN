@@ -1,20 +1,23 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% block search %}
+<div style=" min-height:80vh; width:80%;margin-left:12%;" >
+        <h2 style="text-align:center;">Đây là danh mục: {{active_category}}</h2>
+        <hr>
         {% for product in products %}
 
         <div style="background-color:white; width:21.5%; height:300px; margin-left:20px; margin-top:10px;" class="item_product">
-    
             <a href="{% url 'product_detail' id=product.id%}" class="a" style="width:100%;">
                 <img class="border_product" src="{{product.image.url}}" style="margin-bottom: 18px;margin-top: 18px; margin-left:5%;" width="87%" height="60%" align="center" class="img_product"><br>
                 <hr style="margin:0px; width:100%;">
                 <div style="width: 94%;margin-left: 3%;"> 
                     <p style="margin:0;">{{product.name}}</p>
                     
-                    <p>Giá: {{product.price}} VNĐ</p>
+                    <p style="color:red;">₫{{product.price}} VNĐ</p>
                 </div>   
             </a>
             </div>
  
-        {% endfor %}  
+        {% endfor %}
+    </div>  
 {% endblock search %}

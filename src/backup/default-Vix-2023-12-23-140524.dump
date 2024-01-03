@@ -1,0 +1,1204 @@
+CREATE TABLE IF NOT EXISTS "app_category" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(200) NULL, "is_sub" bool NOT NULL, "slug" varchar(200) NULL, "sub_category_id" bigint NULL REFERENCES "app_category" ("id") DEFERRABLE INITIALLY DEFERRED, "image" varchar(100) NULL);
+INSERT INTO "app_category" VALUES(1,'Đồ bộ đá banh',0,'do-da-banh',NULL,'danhmuc-dodabanhthethao.jpg');
+INSERT INTO "app_category" VALUES(2,'Giày thể thao',0,'giay',NULL,'danhmuc-giaythethao.jpg');
+INSERT INTO "app_category" VALUES(3,'Dụng cụ thể thao',0,'dung-cu',NULL,'danhmuc-dungcuthethao.jpg');
+INSERT INTO "app_category" VALUES(4,'Quần thể thao',0,'quan',NULL,'danhmuc-quanthethao.jpg');
+INSERT INTO "app_category" VALUES(5,'Áo thể thao',0,'ao',NULL,'danhmuc-aothethao.jpg');
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");
+CREATE TABLE IF NOT EXISTS "app_customerpurchase" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "purchase_date" datetime NOT NULL, "total_quantity" integer unsigned NOT NULL CHECK ("total_quantity" >= 0), "total_price" decimal NOT NULL, "address" varchar(200) NULL, "customer_name" varchar(100) NULL, "phone_number" varchar(20) NULL, "email" varchar(200) NULL);
+INSERT INTO "app_customerpurchase" VALUES(4,'2023-12-22 12:38:00.520886',2,903000,'Trà Vinh','Vi','0869238299','user@gmail.com');
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");
+CREATE TABLE IF NOT EXISTS "app_order" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "order_date" datetime NOT NULL, "customer_id" bigint NULL REFERENCES "userauths_customuser" ("id") DEFERRABLE INITIALLY DEFERRED, "transaction_id" varchar(200) NULL, "complete" bool NULL);
+INSERT INTO "app_order" VALUES(8,'2023-12-22 12:37:40.007310',2,NULL,1);
+INSERT INTO "app_order" VALUES(9,'2023-12-22 12:38:00.573272',2,NULL,0);
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");
+CREATE TABLE IF NOT EXISTS "app_orderproduct" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "quantity" integer NULL, "date_added" datetime NOT NULL, "order_id" bigint NULL REFERENCES "app_order" ("id") DEFERRABLE INITIALLY DEFERRED, "product_id" bigint NULL REFERENCES "app_product" ("id") DEFERRABLE INITIALLY DEFERRED);
+INSERT INTO "app_orderproduct" VALUES(6,1,'2023-12-22 12:37:41.904229',8,16);
+INSERT INTO "app_orderproduct" VALUES(7,1,'2023-12-22 12:37:50.763581',8,8);
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");
+CREATE TABLE IF NOT EXISTS "app_product" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(200) NULL, "description" text NOT NULL, "price" decimal NOT NULL, "image" varchar(100) NULL, "quantity" integer NULL);
+INSERT INTO "app_product" VALUES(1,'Bộ Quần Áo Bóng Đá Argentina','<p>Bộ Quần &Aacute;o B&oacute;ng Đ&aacute; Đội Tuyển Argentina xanh 21-22- &Aacute;o Đ&aacute; B&oacute;ng Đẹp Đ&Agrave;M SPORT 3_QL_17</p>
+
+<p>✪ CAM KẾT ✪</p>
+
+<p>- Kh&aacute;ch lu&ocirc;n được xem h&agrave;ng rồi mới thanh to&aacute;n</p>
+
+<p>- Nếu lỗi do nh&agrave; sản xuất hoặc của Shop sẽ được ho&agrave;n tiền 100%</p>
+
+<p>- Miễn ph&iacute; đổi trả trong 15 ng&agrave;y</p>
+
+<p>- Kh&aacute;ch h&agrave;ng c&oacute; nhu cầu đặt đội hoặc mua số lượng lớn từ 7 bộ vui l&ograve;ng inbox để SHOP hỗ trợ với gi&aacute; tốt nhất c&ugrave;ng nhiều ưu đ&atilde;i qu&agrave; tặng đặc biệt</p>
+
+<p>H&Agrave;NG CHẤT - GI&Aacute; TỐT - TRUNG THỰC</p>
+
+<p>LƯU &Yacute; TẤT CẢ H&Igrave;NH ẢNH ĐỀU ĐƯỢC SHOP TỰ CHỤP 100% &bull; &Aacute;o B&oacute;ng Đ&aacute; Man City Xanh S&acirc;n Nh&agrave; 20/21- bản Fan chuẩn</p>
+
+<p>&bull; Form body-fit vừa vặn cơ thể người Việt Nam</p>
+
+<p>&bull; H&agrave;ng nhập nguy&ecirc;n bộ từ Th&aacute;i Lan</p>
+
+<p>&bull; V&atilde;i m&egrave; cao cấp nhất của Th&aacute;i kh&ocirc;ng nhăn kh&ocirc;ng x&ugrave; mặc l&ecirc;n tuyệt đẹp d&ugrave; l&agrave; đi đ&aacute; b&oacute;ng hay đi chơi.</p>
+
+<p>--------</p>
+
+<p>BẢNG TH&Ocirc;NG SỐ SIZE &Aacute;O</p>
+
+<p>Size S: cao 1m60 đến 1m67 - nặng 53 đến 61kg</p>
+
+<p>Size M: cao 1m66 đến 1m72 - nặng 60 đến 68kg</p>
+
+<p>Size L: cao 1m70 đến 1m75 - nặng 68 đến 78kg</p>
+
+<p>Size XL: cao 1m74 đến 1m8 - nặng 75 đến 86kg</p>
+
+<p>⛔️ LƯU &Yacute;:</p>
+
+<p>+ M&agrave;u sắc sản phẩm c&oacute; thể sẽ ch&ecirc;nh lệch thực tế một phần nhỏ, do ảnh hưởng về độ lệch m&agrave;u của &aacute;nh s&aacute;ng nhưng vẫn đảm bảo chất lượng.</p>
+
+<p>+ Nếu c&oacute; bất kỳ khiếu nại cần Shop hỗ trợ về sản phẩm, khi mở sản phẩm Qu&yacute; kh&aacute;ch vui l&ograve;ng quay lại video qu&aacute; tr&igrave;nh mở sản phẩm để được đảm bảo 100% đổi lại sản phẩm mới nếu Shop giao bị lỗi.</p>
+
+<p>+ Qu&yacute; kh&aacute;ch nhận được sản phẩm, vui l&ograve;ng đ&aacute;nh gi&aacute; gi&uacute;p Shop để hưởng th&ecirc;m nhiều ưu đ&atilde;i hơn nh&eacute;!</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lheljewl3r9dd0" style="height:100%; width:100%" /></p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lf0ot6whh47ea7" style="height:100%; width:100%" /></p>',169000,'argentina_lgadR7h.jpg',96);
+INSERT INTO "app_product" VALUES(2,'Áo Bóng Đá Man City','<p>&Aacute;o B&oacute;ng Đ&aacute; Man City Xanh S&acirc;n Nh&agrave; 202122, &Aacute;o Đ&aacute; Banh H&agrave;ng Th&aacute;i</p>
+
+<p>✪ CAM KẾT ✪</p>
+
+<p>- Kh&aacute;ch lu&ocirc;n được xem h&agrave;ng rồi mới thanh to&aacute;n</p>
+
+<p>- Nếu lỗi do nh&agrave; sản xuất hoặc của Shop sẽ được ho&agrave;n tiền 100%</p>
+
+<p>- Miễn ph&iacute; đổi trả trong 15 ng&agrave;y</p>
+
+<p>- Kh&aacute;ch h&agrave;ng c&oacute; nhu cầu đặt đội hoặc mua số lượng lớn từ 7 bộ vui l&ograve;ng inbox để SHOP hỗ trợ với gi&aacute; tốt nhất c&ugrave;ng nhiều ưu đ&atilde;i qu&agrave; tặng đặc biệt</p>
+
+<p>H&Agrave;NG CHẤT - GI&Aacute; TỐT - TRUNG THỰC</p>
+
+<p>LƯU &Yacute; TẤT CẢ H&Igrave;NH ẢNH ĐỀU ĐƯỢC SHOP TỰ CHỤP 100% &bull; &Aacute;o B&oacute;ng Đ&aacute; Man City Xanh S&acirc;n Nh&agrave; 20/21- bản Fan chuẩn</p>
+
+<p>&bull; Form body-fit vừa vặn cơ thể người Việt Nam</p>
+
+<p>&bull; H&agrave;ng nhập nguy&ecirc;n bộ từ Th&aacute;i Lan</p>
+
+<p>&bull; V&atilde;i m&egrave; cao cấp nhất của Th&aacute;i kh&ocirc;ng nhăn kh&ocirc;ng x&ugrave; mặc l&ecirc;n tuyệt đẹp d&ugrave; l&agrave; đi đ&aacute; b&oacute;ng hay đi chơi.</p>
+
+<p>--------</p>
+
+<p>BẢNG TH&Ocirc;NG SỐ SIZE &Aacute;O</p>
+
+<p>Size S: cao 1m60 đến 1m67 - nặng 53 đến 61kg</p>
+
+<p>Size M: cao 1m66 đến 1m72 - nặng 60 đến 68kg</p>
+
+<p>Size L: cao 1m70 đến 1m75 - nặng 68 đến 78kg</p>
+
+<p>Size XL: cao 1m74 đến 1m8 - nặng 75 đến 86kg</p>
+
+<p>⛔️ LƯU &Yacute;:</p>
+
+<p>+ M&agrave;u sắc sản phẩm c&oacute; thể sẽ ch&ecirc;nh lệch thực tế một phần nhỏ, do ảnh hưởng về độ lệch m&agrave;u của &aacute;nh s&aacute;ng nhưng vẫn đảm bảo chất lượng.</p>
+
+<p>+ Nếu c&oacute; bất kỳ khiếu nại cần Shop hỗ trợ về sản phẩm, khi mở sản phẩm Qu&yacute; kh&aacute;ch vui l&ograve;ng quay lại video qu&aacute; tr&igrave;nh mở sản phẩm để được đảm bảo 100% đổi lại sản phẩm mới nếu Shop giao bị lỗi.</p>
+
+<p>+ Qu&yacute; kh&aacute;ch nhận được sản phẩm, vui l&ograve;ng đ&aacute;nh gi&aacute; gi&uacute;p Shop để hưởng th&ecirc;m nhiều ưu đ&atilde;i hơn nh&eacute;!</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-libd9ktfbxzm51" style="height:100%; width:100%" /></p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-libd9ktfg5oy81" style="height:100%; width:100%" /></p>',169000,'mancity_HSZb6Th.jpg',81);
+INSERT INTO "app_product" VALUES(3,'Áo Bóng Đá Đẹp, Áo đấu DAS','<p>&Aacute;o B&oacute;ng Đ&aacute; Đẹp, &Aacute;o đấu DAS ba l&aacute; Cực Chất - H&agrave;ng Xuất Dư - Đồ Đ&aacute; Banh Đẹp</p>
+
+<p>🎯 ĐẶC ĐIỂM SẢN PHẨM BỘ QUẦN &Aacute;O B&Oacute;NG Đ&Aacute;, &Aacute;O Đ&Aacute; B&Oacute;NG DAS BA L&Aacute;</p>
+
+<p>🏆 Logo th&ecirc;u/in Cực tinh tế v&agrave; chắc chắn</p>
+
+<p>🏆 Chất liệu: Vải Th&aacute;i cao cấp</p>
+
+<p>🏆 KH&Ocirc;NG NHĂN &ndash; KH&Ocirc;NG X&Ugrave; &ndash; KH&Ocirc;NG PHAI</p>
+
+<p>🏆 Thấm h&uacute;t mồ h&ocirc;i cực tốt</p>
+
+<p>🏆 Thiết kế mạnh mẽ, hiện đại</p>
+
+<p>🏆 C&ocirc;ng nghệ in ấn chất lượng cao với m&aacute;y m&oacute;c ti&ecirc;n tiến, hiện đại nhất</p>
+
+<p>🎯 BẢNG SIZE &Aacute;O B&Oacute;NG Đ&Aacute; DAS form &acirc;u</p>
+
+<p>⚽ Size S: 50-60(kg), chiều cao &lt;1,65m</p>
+
+<p>⚽ Size M: 60-70(kg), chiều cao 1,65m &lt; 1,70m</p>
+
+<p>⚽ Size L: 70-80(kg), chiều cao 1,70m &lt; 1,80m</p>
+
+<p>⚽ Size XL: 80-95(kg), chiều cao 1,80m &lt; 1,85m SIZE 2XL : TỪ 90KG</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/ac14f91dc90df2b5597190d3a26226fa" style="height:100%; width:100%" /></p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/5a84a1640be36ad93bbf1cebe8fd82af" style="height:100%; width:100%" /></p>',300000,'DAS_B6lYAiN.jpg',78);
+INSERT INTO "app_product" VALUES(4,'Đồ Đá Banh Clb Real Madrid','<p>&Aacute;o Real Madrid S&acirc;n Nh&agrave; 2023 | Bộ Quần &Aacute;o B&oacute;ng Đ&aacute; CLB Real Madrid 2021/2022 S&acirc;n Nh&agrave; M&agrave;u Trắng H&agrave;ng Th&aacute;i Xịn</p>
+
+<p>&bull; Chất liệu Vải TH&Aacute;I cao cấp</p>
+
+<p>&bull; KH&Ocirc;NG NHĂN &ndash; KH&Ocirc;NG X&Ugrave; &ndash; KH&Ocirc;NG PHAI</p>
+
+<p>&bull; Thấm h&uacute;t mồ h&ocirc;i cực tốt</p>
+
+<p>&bull; Thiết kế mạnh mẽ, hiện đại</p>
+
+<p>===================================</p>
+
+<p>✪ Hướng dẫn chọn size</p>
+
+<p>&bull; Size S: 45-58kg,</p>
+
+<p>&bull; Size M : 59-68kg</p>
+
+<p>&bull; Size L : 69-75kg</p>
+
+<p>&bull; Size XL : 76-90kg</p>
+
+<p>Chọn size chỉ mang t&iacute;nh chất tương đối, kh&aacute;ch vui l&ograve;ng ib chiều cao c&acirc;n nặng để shop tư vấn size cho ch&iacute;nh x&aacute;c nh&eacute; .</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lp0cgeqlk1974f" style="height:100%; width:100%" /></p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lp0cgeqlimorcb" style="height:100%; width:100%" /></p>',150000,'realmadrid_ARVKfgT.jpg',58);
+INSERT INTO "app_product" VALUES(5,'Áo thun lạnh thể thao A07','<p>&Aacute;o thun lạnh thể thao nam ngắn tay, chất thun thể thao poly 4 chiều cao cấp, tho&aacute;ng m&aacute;t v&agrave; thấm h&uacute;t mồ h&ocirc;i</p>
+
+<p>- A07 &Aacute;o thun l&agrave; một item kh&ocirc;ng thể thiếu cho tủ đồ của mọi t&iacute;n đồ thời trang, t&iacute;n đồ thể thao năng động. M&agrave;u sắc đa dạng basic, dễ d&agrave;ng mix match phối đồ. Ph&ugrave; hợp cho mọi lứa tuổi, giới t&iacute;nh, mọi hoạt động thể dục thể thao, đi dạo, cafe, hẹn h&ograve;,....đều c&oacute; thể dễ d&agrave;ng lựa chọn ngay một chiếc &aacute;o thun lạnh tho&aacute;ng m&aacute;t. Ph&ugrave; hợp c&aacute;c hoạt động thể thao năng động, cần sự thoải m&aacute;i 100%.</p>
+
+<p>- Chất vải thun poly 4 chiều cao cấp.</p>
+
+<p>- Co d&atilde;n tốt, thấm h&uacute;t mồ h&ocirc;i.</p>
+
+<p>- Kh&ocirc;ng x&ugrave; l&ocirc;ng, kh&ocirc;ng nh&atilde;o, kh&ocirc;ng bạt m&agrave;u.</p>
+
+<p>- Logo in th&ecirc;u c&ocirc;ng nghệ cao cực kỳ sắc n&eacute;t v&agrave; bền bỉ.</p>
+
+<p>- Đường may tinh tế.</p>
+
+<p>- Tem tag đầy đủ tỉ mỉ từng chi tiết.</p>
+
+<p>- Cam kết h&agrave;ng chất lượng chuẩn h&igrave;nh ảnh do shop tự chụp.</p>
+
+<p>- Xuất xứ: Việt Nam.</p>
+
+<p>------------------------ BẢNG SIZE --------------------------</p>
+
+<p>Đủ size cho c&acirc;n nặng từ 50 đến 85 kg</p>
+
+<p>- Size M : từ 50-58 kg.</p>
+
+<p>- Size L: từ 59-67 kg.</p>
+
+<p>- Size XL: từ 68-75 kg.</p>
+
+<p>- Size XXL: từ 76-85 kg</p>
+
+<p>👉 Ch&uacute; &yacute;: Kh&aacute;ch nhắn tin shop để nh&acirc;n vi&ecirc;n tư vấn size ch&iacute;nh x&aacute;c nhất nh&eacute;.</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-p35nr92mkmlv92" style="height:100%; width:100%" /></p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-eiarhr1mkmlvff" style="height:100%; width:100%" /></p>',198000,'ao_-thun-adidas_4T8u7AO.jpg',68);
+INSERT INTO "app_product" VALUES(6,'Áo ba lỗ nam thể thao A122','<p>&Aacute;o thun lạnh thể thao nam cao cấp, chất thun poly co d&atilde;n 4 chiều tho&aacute;ng m&aacute;t,vải mịn, kh&ocirc;ng x&ugrave; l&ocirc;ng, kh&ocirc;ng bai m&agrave;u</p>
+
+<p>- A119 &Aacute;o thun lạnh l&agrave; một item kh&ocirc;ng thể thiếu cho tủ đồ của mọi t&iacute;n đồ thời trang . M&agrave;u sắc đa dạng basic, dễ d&agrave;ng mix match phối đồ. Ph&ugrave; hợp cho mọi lứa tuổi, giới t&iacute;nh, mọi hoạt động thể dục thể thao, đi dạo, cafe, hẹn h&ograve;,....đều c&oacute; thể dễ d&agrave;ng lựa chọn ngay một chiếc &aacute;o thun phối set đồ c&aacute; t&iacute;nh năng động. Ph&ugrave; hợp c&aacute;c hoạt động thể thao năng động, cần sự thoải m&aacute;i 100%.</p>
+
+<p>- Chất vải thun poly 4 chiều m&aacute;t mẻ cao cấp.</p>
+
+<p>- Co d&atilde;n tốt, thấm h&uacute;t mồ h&ocirc;i.</p>
+
+<p>- Kh&ocirc;ng x&ugrave; l&ocirc;ng, kh&ocirc;ng nh&atilde;o, kh&ocirc;ng bạt m&agrave;u.</p>
+
+<p>- Logo in/th&ecirc;u c&ocirc;ng nghệ cao cực kỳ sắc n&eacute;t v&agrave; bền bỉ.</p>
+
+<p>- Đường may tinh tế.</p>
+
+<p>- Tem tag đầy đủ tỉ mỉ từng chi tiết.</p>
+
+<p>- Cam kết h&agrave;ng chất lượng chuẩn h&igrave;nh ảnh do shop tự chụp.</p>
+
+<p>- Xuất xứ: Việt Nam.</p>
+
+<p>------------------------ BẢNG SIZE --------------------------</p>
+
+<p>Đủ size cho c&acirc;n nặng từ 50 đến 85 kg</p>
+
+<p>- Size M : từ 50-58 kg.</p>
+
+<p>- Size L: từ 59-67 kg.</p>
+
+<p>- Size XL: từ 68-75 kg.</p>
+
+<p>- Size XXL: từ 76-85 kg</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-2fqu7wyxpnlvba" style="height:100%; width:100%" /></p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-wkisqxyxpnlv12" style="height:100%; width:100%" /></p>',100000,'ao-ba-lo_hSFRROj.jpg',69);
+INSERT INTO "app_product" VALUES(7,'Áo thể thao nam A140','<p>- &Aacute;o thun l&agrave; một item kh&ocirc;ng thể thiếu cho tủ đồ của mọi t&iacute;n đồ thời trang . M&agrave;u sắc đa dạng basic, dễ d&agrave;ng mix match phối đồ. Ph&ugrave; hợp cho mọi lứa tuổi, giới t&iacute;nh, mọi hoạt động thể dục thể thao, đi dạo, cafe, hẹn h&ograve;,....đều c&oacute; thể dễ d&agrave;ng lựa chọn ngay một chiếc &aacute;o thun.</p>
+
+<p>- Thu h&uacute;t mọi &aacute;nh nh&igrave;n bởi sự năng đ&ocirc;ng v&agrave; năng lượng của bản th&acirc;n bằng một chiếc &aacute;o thun basic, kết hợp quần jean, quần đ&ugrave;i hay quần t&acirc;y đều được.</p>
+
+<p>- Chất liệu thun lạnh cao cấp co d&atilde;n 4 chiều</p>
+
+<p>- Co d&atilde;n tốt, thấm h&uacute;t mồ h&ocirc;i.</p>
+
+<p>- Kh&ocirc;ng x&ugrave; l&ocirc;ng, kh&ocirc;ng nh&atilde;o, kh&ocirc;ng bạt m&agrave;u.</p>
+
+<p>- Logo th&ecirc;u c&ocirc;ng nghệ cao cực kỳ sắc n&eacute;t v&agrave; bền bỉ.</p>
+
+<p>- Đường may tinh tế.</p>
+
+<p>- Tem tag đầy đủ tỉ mỉ từng chi tiết.</p>
+
+<p>- Cam kết h&agrave;ng chất lượng chuẩn h&igrave;nh ảnh do shop tự chụp.</p>
+
+<p>- Xuất xứ: Việt Nam.</p>
+
+<p>------------------------ BẢNG SIZE --------------------------</p>
+
+<p>Đủ size cho c&acirc;n nặng từ 50 đến 85 kg</p>
+
+<p>- Size M : từ 50-58 kg.</p>
+
+<p>- Size L: từ 59-67 kg.</p>
+
+<p>- Size XL: từ 68-75 kg.</p>
+
+<p>- Size XXL: từ 76-85 kg</p>
+
+<p>👉 Ch&uacute; &yacute;: Kh&aacute;ch nhắn tin shop để nh&acirc;n vi&ecirc;n tư vấn size ch&iacute;nh x&aacute;c nhất nh&eacute;.</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-jgc14tv65klv6d" style="height:100%; width:100%" /></p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-wzz4lrv65klv93" style="height:100%; width:100%" /></p>',150000,'ao-thun-a140_9kP2DnI.jpg',99);
+INSERT INTO "app_product" VALUES(8,'Áo thun thể thao phối 3 sộc','<p>T&Ecirc;N SẢN PHẨM:&Aacute;O THUN THỂ THAO NAM PHỐI 3 SỌC CAO CẤP,CHẤT THUN LẠNH CO GIẢN 4 CHIỀU THỎA M&Aacute;I KHI DI CHUYỂN VẬN ĐỘNG</p>
+
+<p>Chất liệu thun lạnh co gi&atilde;n 4 chiều, dập v&acirc;n cao tần, Logo phan quang &eacute;p nhiệt chắc chắn, giặt tay giặt m&aacute;y đều ok, mặc ở nh&agrave;, chơi thể thao đều đẹp. Sản phẩm gồm nhiều m&agrave;u</p>
+
+<p>BẢNG SIZE THAM KHẢO</p>
+
+<p>M: (43 - 59)Kg 1m54-1m70 (dưới 1m7-61kg)</p>
+
+<p>L: (60 - 68)Kg 1m56-1m78 XL: (69 - 77)Kg 1m68-1m80 (dưới 1m70-68kg)</p>
+
+<p>2XL: (78-84)kg 1m60-1m82 3XL: (85-96)kg 1m60-1m85</p>
+
+<p>*NH&Agrave; SẢN XUẤT: 50/5B MỸ H&Ograve;A 1,TRUNG CH&Aacute;NH,H&Oacute;C M&Ocirc;N,TPHCM *XUẤT XỨ SẢN PHẨM: VIỆT NAM</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/d9b9f2e4f88789944f4a86e1c92c0f48" style="height:100%; width:100%" /></p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/fca9003ca64f173e8624ba8aade9b2c9" style="height:100%; width:100%" /></p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/d74074a9e8017ac85017fe4e654dc511" style="height:100%; width:100%" /></p>',139000,'aothunthethao3soc_dBoXxtn.jpg',56);
+INSERT INTO "app_product" VALUES(9,'Quần short thể thao Q69','<p>Quần short thun thể thao nam, Quần đ&ugrave;i nam thun poly tho&aacute;ng m&aacute;t thấm h&uacute;t mồ h&ocirc;i cao cấp co d&atilde;n 4 chiều Quần short thun ra đời nhằm tăng sự đa dạng thời trang cho ph&aacute;i mạnh, l&agrave; sự lựa chọn cho những ch&agrave;ng trai y&ecirc;u th&iacute;ch phong c&aacute;ch thể thao hiện đại, thoải m&aacute;i. Những mẫu quần n&agrave;y dễ mặc với nhiều d&aacute;ng người, v&agrave; đặc biệt l&agrave; dễ mua dễ chọn v&agrave; dễ chọn đồ phối. Mang lại sự thoải m&aacute;i tuyệt đối cho người mặc,mang lại vẻ ngo&agrave;i năng động, khỏe khoắn v&agrave; đầy c&aacute; t&iacute;nh..</p>
+
+<p>- Chất vải thun poly 4 chiều cao cấp.</p>
+
+<p>- Co d&atilde;n tốt, thấm h&uacute;t mồ h&ocirc;i. - Kiểu d&aacute;ng trẻ trung năng động.</p>
+
+<p>- Kh&ocirc;ng x&ugrave; l&ocirc;ng, kh&ocirc;ng nh&atilde;o, kh&ocirc;ng bạt m&agrave;u.</p>
+
+<p>- Logo in th&ecirc;u c&ocirc;ng nghệ cao cực kỳ sắc n&eacute;t v&agrave; bền bỉ.</p>
+
+<p>- Đường may tinh tế.</p>
+
+<p>- Tem tag đầy đủ tỉ mỉ từng chi tiết.</p>
+
+<p>- Cam kết h&agrave;ng chất lượng chuẩn h&igrave;nh ảnh do shop tự chụp.</p>
+
+<p>- Xuất xứ: Việt Nam.</p>
+
+<p>------------------------ BẢNG SIZE --------------------------</p>
+
+<p>Đủ size cho c&acirc;n nặng từ 50 đến 85 kg - Size M : từ 50-58 kg.</p>
+
+<p>- Size L: từ 59-67 kg.</p>
+
+<p>- Size XL: từ 68-75 kg.</p>
+
+<p>- Size XXL: từ 76-85 kg</p>
+
+<p>👉 Ch&uacute; &yacute;: Kh&aacute;ch nhắn tin shop để nh&acirc;n vi&ecirc;n tư vấn size ch&iacute;nh x&aacute;c nhất nh&eacute;.</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-34j3okpxonlvba" style="height:100%; width:100%" /></p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-fkxzilpxonlv2d" style="height:100%; width:100%" /></p>',129000,'quan-tt-puma_45elw5L.jpg',46);
+INSERT INTO "app_product" VALUES(10,'Quần short thể thao Q79','<p>Quần short thun ra đời nhằm tăng sự đa dạng thời trang cho ph&aacute;i mạnh, l&agrave; sự lựa chọn cho những ch&agrave;ng trai y&ecirc;u th&iacute;ch phong c&aacute;ch thể thao hiện đại, thoải m&aacute;i. Những mẫu quần n&agrave;y dễ mặc với nhiều d&aacute;ng người, v&agrave; đặc biệt l&agrave; dễ mua dễ chọn v&agrave; dễ chọn đồ phối. Mang lại sự thoải m&aacute;i tuyệt đối cho người mặc,mang lại vẻ ngo&agrave;i năng động, khỏe khoắn v&agrave; đầy c&aacute; t&iacute;nh..</p>
+
+<p>- Chất vải thun poly 4 chiều cao cấp.</p>
+
+<p>- Co d&atilde;n tốt, thấm h&uacute;t mồ h&ocirc;i. - Kiểu d&aacute;ng trẻ trung năng động.</p>
+
+<p>- Kh&ocirc;ng x&ugrave; l&ocirc;ng, kh&ocirc;ng nh&atilde;o, kh&ocirc;ng bạc m&agrave;u.</p>
+
+<p>- Logo in th&ecirc;u c&ocirc;ng nghệ cao cực kỳ sắc n&eacute;t v&agrave; bền bỉ.</p>
+
+<p>- Đường may tinh tế.</p>
+
+<p>- Tem tag đầy đủ tỉ mỉ từng chi tiết.</p>
+
+<p>- Cam kết h&agrave;ng chất lượng chuẩn h&igrave;nh ảnh do shop tự chụp.</p>
+
+<p>- Xuất xứ: Việt Nam.</p>
+
+<p>------------------------ BẢNG SIZE --------------------------</p>
+
+<p>Đủ size cho c&acirc;n nặng từ 50 đến 85 kg - Size M : từ 50-58 kg.</p>
+
+<p>- Size L: từ 59-67 kg.</p>
+
+<p>- Size XL: từ 68-75 kg.</p>
+
+<p>- Size XXL: từ 76-85 kg</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-xkgn8j97nnlv41" style="height:100%; width:100%" /></p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/sg-11134201-22120-epgn8j97nnlv50" style="height:100%; width:100%" /></p>',129000,'Q79_GGQPJrz.jpg',50);
+INSERT INTO "app_product" VALUES(11,'Quần short chạy bộ nam LEEGO - ONSTEP','<p>TH&Ocirc;NG TIN SẢN PHẨM:</p>
+
+<p>- Thương hiệu: LEEGO - ONSTEP cao cấp</p>
+
+<p>- Chất liệu vải: Polyester - Spandex (Polyester: 92%, Spandex : 8%) co gi&atilde;n</p>
+
+<p>- Dải r&uacute;t: nằm ở ph&iacute;a trong, mang t&iacute;nh thẩm mỹ cao v&agrave; điều chỉnh được t&ugrave;y theo form người.</p>
+
+<p>- Chất liệu vải lớp boxer cao cấp: Vải co gi&atilde;n, Mềm Mại, c&oacute; khả năng h&uacute;t ẩm v&agrave; thấm h&uacute;t mồ h&ocirc;i tốt</p>
+
+<p>- Cạp chun: Co gi&atilde;n tốt, kh&ocirc;ng bai d&atilde;o. &Ocirc;m vừa vặn lấy phần h&ocirc;ng, thoải m&aacute;i, kh&ocirc;ng g&acirc;y k&iacute;ch ứng da.</p>
+
+<p>- T&uacute;i c&oacute; kh&oacute;a k&eacute;o ph&iacute;a sau đựng điện thoại/Gel/Bar/Ch&igrave;a kh&oacute;a</p>
+
+<p>- Đường kh&acirc;u 2 mặt, mịn, &ecirc;m v&agrave; kh&oacute; đứt, kh&ocirc;ng c&oacute; chỉ thừa v&agrave; chắc chắn hơn.</p>
+
+<p>- Thấm h&uacute;t mồ h&ocirc;i nhanh ch&oacute;ng, nhanh kh&ocirc;, tho&aacute;t kh&iacute; nhanh, ống quần chắc chắn với lớp viền.</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/486ebe9c99c5f419d123afffbfef459f" style="height:100%; width:100%" /></p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/e22e3b0681bc9e5ae8343031a9e23de0" style="height:100%; width:100%" /></p>',177000,'quan-chaybo_vZfzrkU.jpg',90);
+INSERT INTO "app_product" VALUES(12,'Giày ASICS COURT MZ CREAM BLACK GUM','<p>TH&Ocirc;NG TIN SẢN PHẨM</p>
+
+<p>✔️ Đủ size Nam nữ : 36 - 43</p>
+
+<p>✔️ H&agrave;ng thật 100% như h&igrave;nh .</p>
+
+<p>✔️ Gi&aacute; Si&ecirc;u cạnh tranh.</p>
+
+<p>✔️ Kiểu d&aacute;ng hot trend của năm nay v&agrave; c&ograve;n k&eacute;o d&agrave;i trong những năm tiếp theo. Đế gi&agrave;y được thiết kế chịu ma s&aacute;t tốt, tăng chiều cao, nhẹ, &ecirc;m, c&acirc;n bằng v&agrave; tho&aacute;ng kh&iacute;</p>
+
+<p>✔️ Gi&agrave;y đẹp, nhẹ, bền. Gi&aacute; phải chăng ph&ugrave; hợp với c&aacute;c bạn học sinh, sinh vi&ecirc;n. C&oacute; thể l&agrave;m gi&agrave;y đ&ocirc;i, gi&agrave;y nh&oacute;m. Th&iacute;ch hợp đi chơi, du lịch, chạy bộ, gym, đi học, đi l&agrave;m... ✔️ Dễ phối đồ, c&oacute; thể kết hợp với v&aacute;y, jeans, sooc&hellip;. Ph&ugrave; hợp với mọi thời tiết từ đ&ocirc;ng sang h&egrave;.</p>
+
+<p>✔️ Giao h&agrave;ng To&agrave;n Quốc</p>
+
+<p>✔️ Kiểm tra h&agrave;ng trước khi thanh to&aacute;n</p>
+
+<p>HƯỚNG DẪN CHỌN SIZE GI&Agrave;Y</p>
+
+<p>Chiều d&agrave;i b&agrave;n ch&acirc;n -&gt; Size số:</p>
+
+<p>- 22.5cm đến 23cm ---&gt; size 36</p>
+
+<p>- 23cm đến 23.5cm ---&gt; size 37</p>
+
+<p>- 23.5cm đến 24cm ---&gt; size 38</p>
+
+<p>- 24cm đến 24.5cm ---&gt; size 39</p>
+
+<p>- 24,5cm đến 25cm ---&gt; size 40</p>
+
+<p>- 25cm đến 25.5cm ---&gt; size 41</p>
+
+<p>- 25,5cm đến 26cm ---&gt; size 42</p>
+
+<p>- 26,5cm đến 27cm ---&gt; size 43 ️</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-llrelo6d7cv354" style="height:100%; width:100%" /></p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-llrelo6x6jtrf7" style="height:100%; width:100%" /></p>',240000,'giay-asics_o8iEe6K.jpg',60);
+INSERT INTO "app_product" VALUES(13,'Giày SNEAKER G015','<p>Gi&agrave;y nam sneaker h&agrave;n quốc c&ocirc;ng sở G015 gi&agrave;y thể thao nam tập gym chạy bộ thể dục cổ thấp gi&agrave;y đẹp gi&aacute; rẻ Th&ocirc;ng tin sản phẩm gi&agrave;y nam</p>
+
+<p>-Chất liệu vải dệt cao cấp khiến gi&agrave;y tho&aacute;ng kh&iacute; kh&ocirc;ng g&acirc;y m&ugrave;i</p>
+
+<p>- Đế gi&agrave;y cao su đ&uacute;c nguy&ecirc;n khối mang lại sự &ecirc;m &aacute;i khi mang</p>
+
+<p>-Thiết kế phong c&aacute;ch, trẻ trung, năng động, t&ocirc;n d&aacute;ng khi đi gi&agrave;y</p>
+
+<p>-Form &ocirc;m ch&acirc;n thoải m&aacute;i ngay cả khi mang gi&agrave;y cả ng&agrave;y d&agrave;i</p>
+
+<p>Bảng size gi&agrave;y cho c&aacute;c bạn tham khảo(hoặc c&oacute; thể chọn size m&agrave; m&igrave;nh hay đi)</p>
+
+<p>Size:</p>
+
+<p>39: 24-24.5cm</p>
+
+<p>40: 24.5-25cm</p>
+
+<p>41: 25-25.5cm</p>
+
+<p>42: 25.5-26cm</p>
+
+<p>43: 26-26.5cm</p>
+
+<p>44: 26.5-27cm</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-llda2voh0pti78" style="height:100%; width:100%" /></p>',199000,'giay-sneaker_Zv1iKWQ.jpg',200);
+INSERT INTO "app_product" VALUES(14,'Giày thể dục thể thao ASIA','<p>Thương hiệu : asia</p>
+
+<p>Xuất xứ: Việt Nam</p>
+
+<p>chất liệu : da kết hợp với vải th&ocirc; tạo sự thoải m&aacute;i, m&aacute;t mẻ v&agrave; th&ocirc;ng tho&aacute;ng cho đ&ocirc;i ch&acirc;n .</p>
+
+<p>Đế : cao su c&oacute; nhiều ma s&aacute;t. Gi&agrave;y thể thao asia ch&iacute;nh h&atilde;ng , được thiết kế đẹp mắt, đường may chắc chắn v&agrave; đế gi&agrave;y c&oacute; độ ma s&aacute;t cao chống trơn trượt .</p>
+
+<p>- Gi&agrave;y kh&aacute; nhẹ v&agrave; cổ gi&agrave;y &ocirc;m kh&iacute;t tạo cảm gi&aacute;c an to&agrave;n khi di chuyển.</p>
+
+<p>- M&agrave;u sắc : trắng + đen+ xanh kết hợp rất đẹp mắt.</p>
+
+<p>- L&agrave; mẫu gi&agrave;y thể thao phổ biến ,th&ocirc;ng dụng do c&ocirc;ng ty gi&agrave;y &Aacute; Ch&acirc;u sản xuất. Đạt giấy chứng nhận h&agrave;ng Việt Nam chất lượng cao.</p>
+
+<p>- Gi&agrave;y th&iacute;ch hợp cho c&aacute;c hoạt động thể thao như: đ&aacute;nh cầu l&ocirc;ng, b&oacute;ng đ&aacute;, b&oacute;ng chuyền , chạy bộ ...hoặc c&aacute;c c&ocirc;ng việc y&ecirc;u cầu độ bền cao của gi&agrave;y. Gi&agrave;y ASIA dễ d&agrave;ng chinh phục người ti&ecirc;u d&ugrave;ng với chất lượng đảm bảo, mức gi&aacute; phải chăng, độ bền t&iacute;nh bằng măm.</p>
+
+<p>C&aacute;ch chọn size gi&agrave;y d&eacute;p như sau: Đặt b&agrave;n ch&acirc;n l&ecirc;n giấy phẳng. đ&aacute;nh dấu điểm thấp nhất v&agrave; cao nhất của b&agrave;n ch&acirc;n . Đối chiếu chiều d&agrave;i đo được với bảng dưới đ&acirc;y để c&oacute; size ph&ugrave; hợp với bạn.</p>
+
+<p>size. chiều d&agrave;i</p>
+
+<p>38. 23cm</p>
+
+<p>39. 23,5cm</p>
+
+<p>40. 24cm</p>
+
+<p>41. 24,5cm</p>
+
+<p>42. 25cm 43.</p>
+
+<p>25,5cm</p>
+
+<p>44. 26cm</p>
+
+<p><img alt="" src="https://down-vn.img.susercontent.com/file/vn-11134208-7r98o-lnpx1vvh7ekae2" style="height:100%; width:100%" /></p>',139000,'giay-asia_mRb9kLU.jpg',23);
+INSERT INTO "app_product" VALUES(15,'Dây nhảy không dây FITEZY','<p>TH&Ocirc;NG TIN SẢN PHẨM: D&acirc;y nhảy kh&ocirc;ng d&acirc;y đếm số đo Calo</p>
+
+<p>&bull; Bộ sản phẩm bao gồm: 1 d&acirc;y thường thay thế, 2 d&acirc;y b&oacute;ng, 2 tay cầm c&oacute; 1 tay cầm đếm số, 1 pin c&uacute;c &aacute;o, bộ 2 cục tạ th&ecirc;m v&agrave;o tay cầm, 1 t&ocirc; v&iacute;t nhỏ.</p>
+
+<p>&bull; Chất Liệu: Tay cầm nhựa ABS phủ xốp EVR, D&acirc;y PVC l&otilde;i th&eacute;p, Tạ sắt, d&acirc;y b&oacute;ng xốp EVA</p>
+
+<p>&bull; Đường k&iacute;nh b&oacute;ng 7cm</p>
+
+<p>&bull; Trọng lượng b&oacute;ng: khoảng 70g (b&ecirc;n trong b&oacute;ng c&oacute; tạ sắt)</p>
+
+<p>&bull; K&iacute;ch thước tay cầm: 18,5cmx3cm. Th&ocirc;ng số m&agrave;n Led: W: C&acirc;n nặng - C: Calo - L: Số Lần - T: Thời Gian.</p>
+
+<p>&bull; Chiều d&agrave;i d&acirc;y thường: 2,9M</p>
+
+<p>&bull; Mỗi tạ th&ecirc;m v&agrave;o tay cấm nặng 200g</p>
+
+<p>&bull; K&iacute;ch thước hộp: 20*10*5. Trọng lượng to&agrave;n bộ sản phẩm: 800g.</p>
+
+<p>&bull; C&aacute;c n&uacute;t chức năng:</p>
+
+<p>+ ON: CHUYỂN ĐỔI/ ĐẶT LẠI</p>
+
+<p>+ SET: C&Agrave;I ĐẶT CHẾ ĐỘ</p>
+
+<p>+ UP: TĂNG GI&Aacute; TRỊ</p>
+
+<p>+ DN: GIẢM GI&Aacute; TRỊ.</p>
+
+<p>&bull; M&agrave;u sắc: Hồng - Cam - Xanh Dương - Xanh L&aacute;</p>
+
+<p>Sản phẩm c&oacute; cả ph&acirc;n loại kh&ocirc;ng đếm số để bạn lựa chọn.</p>
+
+<p>ƯU ĐIỂM SẢN PHẨM: D&acirc;y nhảy kh&ocirc;ng d&acirc;y đếm số đo Calo</p>
+
+<p>1. Thiết kế bắt mắt trẻ trung, m&agrave;u hường, cam, xanh mang đến nguồn cảm hứng v&ocirc; tận cho tập luyện thể lực, giảm c&acirc;n tại nh&agrave;.</p>
+
+<p>2. Chip c&ocirc;ng nghệ mới 2022 đếm số đo Calo, Số l&acirc;n nhảy ch&iacute;nh x&aacute;c hơn. M&agrave;n Led r&otilde; n&eacute;t th&ocirc;ng số th&ocirc;ng minh. Pin Lithinum hiệu suất cao sử dụng l&ecirc;n đến 150 ng&agrave;y.</p>
+
+<p>2. D&acirc;y nhảy kh&ocirc;ng d&acirc;y, kh&ocirc;ng lo đập v&agrave;o ch&acirc;n hoặc vấp d&acirc;y. C&aacute;c b&agrave;i tập với d&acirc;y nhảy kh&ocirc;ng d&acirc;y ho&agrave;n hảo tại c&aacute;c kh&ocirc;ng gian hẹp như nơi l&agrave;m việc, ph&ograve;ng ngủ, ph&ograve;ng kh&aacute;ch v&agrave; c&oacute; thể tập luyện cường độ cao giảm c&acirc;n hiệu quả tại nh&agrave; cho người mới.</p>
+
+<p>3. B&oacute;ng k&egrave;m tạ đủ nặng để đốt ch&aacute;y calo v&agrave; tạo ra lực ly t&acirc;m khi nhảy. Thiết kế trục xoay 360 độ th&ocirc;ng minh khiến việc luyện tập đơn giản với c&aacute;c b&agrave;i tập thể lực n&acirc;ng cao. T&iacute;ch hợp tạ sắt trong tay cầm gi&uacute;p việc luyện tập n&acirc;ng cao v&agrave; hiệu quả.</p>
+
+<p>4. Tay cầm d&acirc;y nhảy kh&ocirc;ng d&acirc;y chất liệu EVR tho&aacute;ng kh&iacute; v&agrave; chống trượt, cảm gi&aacute;c cầm nắm thoải m&aacute;i ngay cả trong thời gian d&agrave;i tập luyện thể dục.</p>
+
+<p>5. C&ocirc;ng dụng k&eacute;p c&oacute; thể sử dụng c&ugrave;ng d&acirc;y nhảy l&otilde;i th&eacute;p 10 sợi bọc nhựa PVC si&ecirc;u bền ở ngo&agrave;i trời &amp; nơi tho&aacute;ng m&aacute;t rộng r&atilde;i hơn.</p>
+
+<p><img alt="" src="/images/static/app/images/images_all/2023/12/14/daynhayfitezy.jpg" style="height:100%; width:100%" /></p>',250000,'daynhayfitezynew_vfc5neq.jpg',30);
+INSERT INTO "app_product" VALUES(16,'Máy đi bộ tại nhà M181','<p>M&aacute;y Tập Đi Bộ Tại Nh&agrave;, M&aacute;y Tập Đi Bộ Giảm Mỡ, M&aacute;y Tập Đi Bộ Leo N&uacute;i, R&egrave;n Luyện Sức Khỏe M181</p>
+
+<p>TH&Ocirc;NG TIN SẢN PHẨM</p>
+
+<p>- Chất liệu: Sắt + Nhựa ABS</p>
+
+<p>- K&iacute;ch thước: 43 cm (d&agrave;i) x 40 cm (rộng) x 23 cm (cao)</p>
+
+<p>- Trọng lượng tịnh: 7kg - Khả năng chịu tải: 135kg</p>
+
+<p>- M&aacute;y tập đi bộ Mini được l&agrave;m từ nhựa ABS v&agrave; th&eacute;p, độ bền cao, chịu lực 100kg.</p>
+
+<p>- Thiết kế nhỏ gọn chỉ cần diện t&iacute;ch tối thiểu chưa đến 1m2 l&agrave; c&aacute;c th&agrave;nh vi&ecirc;n trong gia đ&igrave;nh c&oacute; thể c&oacute; được đầy đủ c&aacute;c b&agrave;i tập đi bộ.</p>
+
+<p>- Thiết bị được t&iacute;ch hợp m&agrave;n h&igrave;nh LCD cho ph&eacute;p người tập theo d&otilde;i t&iacute;nh số bước đi v&agrave; nhịp bước t&iacute;nh theo ph&uacute;t đồng hồ tự động ngắt sau 4 ph&uacute;t.</p>
+
+<p>- Hai ống giảm chấn được thiết kế chắc chắn, c&oacute; t&aacute;c dụng giảm sốc, tạo cảm gi&aacute;c an to&agrave;n v&agrave; thoải m&aacute;i cho người tập. - Hai đế ch&acirc;n của m&aacute;y c&oacute; thiết kế b&aacute;nh răng cưa chống trơn trượt, an to&agrave;n cho người tập.</p>
+
+<p>- Dưới đế ch&acirc;n được gắn th&ecirc;m đầu m&uacute;t cao su c&oacute; c&aacute;c r&atilde;nh, gi&uacute;p chống trơn trượt, x&ecirc; dịch trong qu&aacute; tr&igrave;nh tập. Sản phẩm được trang bị 2 d&acirc;y body c&ograve;n c&oacute; độ đ&agrave;n hồi cao, tay cầm bọc foam &ecirc;m &aacute;i, m&oacute;c c&agrave;i tiện lợi gi&uacute;p bạn tập to&agrave;n th&acirc;n một c&aacute;ch ho&agrave;n hảo. + Sản phẩm bảo h&agrave;nh 6 th&aacute;ng lỗi của nh&agrave; sản xuất<br />
+Dưới đ&acirc;y l&agrave; một số h&igrave;nh ảnh kh&aacute;c:</p>
+
+<p><img alt="" src="/images/static/app/images/images_all/2023/12/13/maydibotainha01.jpg" style="height:100%; width:100%" /><img alt="" src="/images/static/app/images/images_all/2023/12/13/maydibotainha02.jpg" style="height:100%; width:100%" /><img alt="" src="/images/static/app/images/images_all/2023/12/13/maydibotainha03.jpg" style="height:100%; width:100%" /></p>',764000,'di-bo-tai-nha_q8ZAYVj.jpg',26);
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");
+CREATE TABLE IF NOT EXISTS "app_product_category" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "product_id" bigint NOT NULL REFERENCES "app_product" ("id") DEFERRABLE INITIALLY DEFERRED, "category_id" bigint NOT NULL REFERENCES "app_category" ("id") DEFERRABLE INITIALLY DEFERRED);
+INSERT INTO "app_product_category" VALUES(1,1,1);
+INSERT INTO "app_product_category" VALUES(2,2,1);
+INSERT INTO "app_product_category" VALUES(3,3,1);
+INSERT INTO "app_product_category" VALUES(4,4,1);
+INSERT INTO "app_product_category" VALUES(5,5,5);
+INSERT INTO "app_product_category" VALUES(6,6,5);
+INSERT INTO "app_product_category" VALUES(7,7,5);
+INSERT INTO "app_product_category" VALUES(8,8,5);
+INSERT INTO "app_product_category" VALUES(9,9,4);
+INSERT INTO "app_product_category" VALUES(10,10,4);
+INSERT INTO "app_product_category" VALUES(11,11,4);
+INSERT INTO "app_product_category" VALUES(12,12,2);
+INSERT INTO "app_product_category" VALUES(13,13,2);
+INSERT INTO "app_product_category" VALUES(14,14,2);
+INSERT INTO "app_product_category" VALUES(15,15,3);
+INSERT INTO "app_product_category" VALUES(16,16,3);
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");
+CREATE TABLE IF NOT EXISTS "app_purchaseitem" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "quantity" integer unsigned NOT NULL CHECK ("quantity" >= 0), "customer_purchase_id" bigint NOT NULL REFERENCES "app_customerpurchase" ("id") DEFERRABLE INITIALLY DEFERRED, "product_id" bigint NOT NULL REFERENCES "app_product" ("id") DEFERRABLE INITIALLY DEFERRED);
+INSERT INTO "app_purchaseitem" VALUES(6,1,4,16);
+INSERT INTO "app_purchaseitem" VALUES(7,1,4,8);
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");
+CREATE TABLE IF NOT EXISTS "auth_group" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(150) NOT NULL UNIQUE);
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");
+CREATE TABLE IF NOT EXISTS "auth_group_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "group_id" integer NOT NULL REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED, "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED);
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");
+CREATE TABLE IF NOT EXISTS "auth_permission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "codename" varchar(100) NOT NULL, "name" varchar(255) NOT NULL);
+INSERT INTO "auth_permission" VALUES(1,1,'add_logentry','Can add log entry');
+INSERT INTO "auth_permission" VALUES(2,1,'change_logentry','Can change log entry');
+INSERT INTO "auth_permission" VALUES(3,1,'delete_logentry','Can delete log entry');
+INSERT INTO "auth_permission" VALUES(4,1,'view_logentry','Can view log entry');
+INSERT INTO "auth_permission" VALUES(5,2,'add_permission','Can add permission');
+INSERT INTO "auth_permission" VALUES(6,2,'change_permission','Can change permission');
+INSERT INTO "auth_permission" VALUES(7,2,'delete_permission','Can delete permission');
+INSERT INTO "auth_permission" VALUES(8,2,'view_permission','Can view permission');
+INSERT INTO "auth_permission" VALUES(9,3,'add_group','Can add group');
+INSERT INTO "auth_permission" VALUES(10,3,'change_group','Can change group');
+INSERT INTO "auth_permission" VALUES(11,3,'delete_group','Can delete group');
+INSERT INTO "auth_permission" VALUES(12,3,'view_group','Can view group');
+INSERT INTO "auth_permission" VALUES(13,4,'add_contenttype','Can add content type');
+INSERT INTO "auth_permission" VALUES(14,4,'change_contenttype','Can change content type');
+INSERT INTO "auth_permission" VALUES(15,4,'delete_contenttype','Can delete content type');
+INSERT INTO "auth_permission" VALUES(16,4,'view_contenttype','Can view content type');
+INSERT INTO "auth_permission" VALUES(17,5,'add_session','Can add session');
+INSERT INTO "auth_permission" VALUES(18,5,'change_session','Can change session');
+INSERT INTO "auth_permission" VALUES(19,5,'delete_session','Can delete session');
+INSERT INTO "auth_permission" VALUES(20,5,'view_session','Can view session');
+INSERT INTO "auth_permission" VALUES(21,6,'add_category','Can add category');
+INSERT INTO "auth_permission" VALUES(22,6,'change_category','Can change category');
+INSERT INTO "auth_permission" VALUES(23,6,'delete_category','Can delete category');
+INSERT INTO "auth_permission" VALUES(24,6,'view_category','Can view category');
+INSERT INTO "auth_permission" VALUES(25,7,'add_customerpurchase','Can add customer purchase');
+INSERT INTO "auth_permission" VALUES(26,7,'change_customerpurchase','Can change customer purchase');
+INSERT INTO "auth_permission" VALUES(27,7,'delete_customerpurchase','Can delete customer purchase');
+INSERT INTO "auth_permission" VALUES(28,7,'view_customerpurchase','Can view customer purchase');
+INSERT INTO "auth_permission" VALUES(29,8,'add_order','Can add order');
+INSERT INTO "auth_permission" VALUES(30,8,'change_order','Can change order');
+INSERT INTO "auth_permission" VALUES(31,8,'delete_order','Can delete order');
+INSERT INTO "auth_permission" VALUES(32,8,'view_order','Can view order');
+INSERT INTO "auth_permission" VALUES(33,9,'add_product','Can add product');
+INSERT INTO "auth_permission" VALUES(34,9,'change_product','Can change product');
+INSERT INTO "auth_permission" VALUES(35,9,'delete_product','Can delete product');
+INSERT INTO "auth_permission" VALUES(36,9,'view_product','Can view product');
+INSERT INTO "auth_permission" VALUES(37,10,'add_purchaseitem','Can add purchase item');
+INSERT INTO "auth_permission" VALUES(38,10,'change_purchaseitem','Can change purchase item');
+INSERT INTO "auth_permission" VALUES(39,10,'delete_purchaseitem','Can delete purchase item');
+INSERT INTO "auth_permission" VALUES(40,10,'view_purchaseitem','Can view purchase item');
+INSERT INTO "auth_permission" VALUES(41,11,'add_orderproduct','Can add order product');
+INSERT INTO "auth_permission" VALUES(42,11,'change_orderproduct','Can change order product');
+INSERT INTO "auth_permission" VALUES(43,11,'delete_orderproduct','Can delete order product');
+INSERT INTO "auth_permission" VALUES(44,11,'view_orderproduct','Can view order product');
+INSERT INTO "auth_permission" VALUES(45,12,'add_customuser','Can add user');
+INSERT INTO "auth_permission" VALUES(46,12,'change_customuser','Can change user');
+INSERT INTO "auth_permission" VALUES(47,12,'delete_customuser','Can delete user');
+INSERT INTO "auth_permission" VALUES(48,12,'view_customuser','Can view user');
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");
+CREATE TABLE IF NOT EXISTS "django_admin_log" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint unsigned NOT NULL CHECK ("action_flag" >= 0), "change_message" text NOT NULL, "content_type_id" integer NULL REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED, "user_id" bigint NOT NULL REFERENCES "userauths_customuser" ("id") DEFERRABLE INITIALLY DEFERRED, "action_time" datetime NOT NULL);
+INSERT INTO "django_admin_log" VALUES(1,'1','Đồ bộ đá banh',1,'[{"added": {}}]',6,1,'2023-12-20 10:18:03.379120');
+INSERT INTO "django_admin_log" VALUES(2,'2','Giày thể thao',1,'[{"added": {}}]',6,1,'2023-12-20 10:18:16.855097');
+INSERT INTO "django_admin_log" VALUES(3,'3','Phụ kiện thể thao',1,'[{"added": {}}]',6,1,'2023-12-20 10:18:35.911135');
+INSERT INTO "django_admin_log" VALUES(4,'4','Quần thể thao',1,'[{"added": {}}]',6,1,'2023-12-20 10:18:48.295801');
+INSERT INTO "django_admin_log" VALUES(5,'5','Áo thể thao',1,'[{"added": {}}]',6,1,'2023-12-20 10:19:00.449613');
+INSERT INTO "django_admin_log" VALUES(6,'1','Bộ Quần Áo Bóng Đá Argentina',1,'[{"added": {}}]',9,1,'2023-12-20 10:27:16.889028');
+INSERT INTO "django_admin_log" VALUES(7,'2','Áo Bóng Đá Man City',1,'[{"added": {}}]',9,1,'2023-12-20 10:28:14.064430');
+INSERT INTO "django_admin_log" VALUES(8,'3','Áo Bóng Đá Đẹp, Áo đấu DAS',1,'[{"added": {}}]',9,1,'2023-12-20 10:28:44.425450');
+INSERT INTO "django_admin_log" VALUES(9,'4','Đồ Đá Banh Clb Real Madrid',1,'[{"added": {}}]',9,1,'2023-12-20 10:29:11.326466');
+INSERT INTO "django_admin_log" VALUES(10,'5','Áo thun lạnh thể thao A07',1,'[{"added": {}}]',9,1,'2023-12-20 10:29:44.173890');
+INSERT INTO "django_admin_log" VALUES(11,'6','Áo ba lỗ nam thể thao A122',1,'[{"added": {}}]',9,1,'2023-12-20 10:30:07.458111');
+INSERT INTO "django_admin_log" VALUES(12,'7','Áo thể thao nam A140',1,'[{"added": {}}]',9,1,'2023-12-20 10:30:36.696701');
+INSERT INTO "django_admin_log" VALUES(13,'8','Áo thun thể thao phối 3 sộc',1,'[{"added": {}}]',9,1,'2023-12-20 10:31:06.053833');
+INSERT INTO "django_admin_log" VALUES(14,'9','Quần short thể thao Q69',1,'[{"added": {}}]',9,1,'2023-12-20 10:31:35.155899');
+INSERT INTO "django_admin_log" VALUES(15,'10','Quần short thể thao Q79',1,'[{"added": {}}]',9,1,'2023-12-20 10:32:17.904564');
+INSERT INTO "django_admin_log" VALUES(16,'11','Quần short chạy bộ nam LEEGO - ONSTEP',1,'[{"added": {}}]',9,1,'2023-12-20 10:32:46.339582');
+INSERT INTO "django_admin_log" VALUES(17,'12','Giày ASICS COURT MZ CREAM BLACK GUM',1,'[{"added": {}}]',9,1,'2023-12-20 10:33:19.410077');
+INSERT INTO "django_admin_log" VALUES(18,'13','Giày SNEAKER G015',1,'[{"added": {}}]',9,1,'2023-12-20 10:34:24.067629');
+INSERT INTO "django_admin_log" VALUES(19,'14','Giày thể dục thể thao ASIA',1,'[{"added": {}}]',9,1,'2023-12-20 10:35:03.685811');
+INSERT INTO "django_admin_log" VALUES(20,'15','Dây nhảy không dây FITEZY',1,'[{"added": {}}]',9,1,'2023-12-20 10:35:47.283389');
+INSERT INTO "django_admin_log" VALUES(21,'16','Máy đi bộ tại nhà M181',1,'[{"added": {}}]',9,1,'2023-12-20 10:36:14.493809');
+INSERT INTO "django_admin_log" VALUES(22,'16','Máy đi bộ tại nhà M181',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:38:42.840740');
+INSERT INTO "django_admin_log" VALUES(23,'16','Máy đi bộ tại nhà M181',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:39:16.920303');
+INSERT INTO "django_admin_log" VALUES(24,'16','Máy đi bộ tại nhà M181',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:40:13.696086');
+INSERT INTO "django_admin_log" VALUES(25,'15','Dây nhảy không dây FITEZY',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:40:30.742991');
+INSERT INTO "django_admin_log" VALUES(26,'14','Giày thể dục thể thao ASIA',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:40:44.629060');
+INSERT INTO "django_admin_log" VALUES(27,'13','Giày SNEAKER G015',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:40:57.834449');
+INSERT INTO "django_admin_log" VALUES(28,'12','Giày ASICS COURT MZ CREAM BLACK GUM',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:41:17.621369');
+INSERT INTO "django_admin_log" VALUES(29,'11','Quần short chạy bộ nam LEEGO - ONSTEP',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:41:32.555869');
+INSERT INTO "django_admin_log" VALUES(30,'10','Quần short thể thao Q79',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:41:50.073042');
+INSERT INTO "django_admin_log" VALUES(31,'9','Quần short thể thao Q69',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:42:09.249407');
+INSERT INTO "django_admin_log" VALUES(32,'8','Áo thun thể thao phối 3 sộc',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:42:34.087895');
+INSERT INTO "django_admin_log" VALUES(33,'7','Áo thể thao nam A140',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:42:50.207395');
+INSERT INTO "django_admin_log" VALUES(34,'6','Áo ba lỗ nam thể thao A122',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:43:07.691915');
+INSERT INTO "django_admin_log" VALUES(35,'5','Áo thun lạnh thể thao A07',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:43:24.415952');
+INSERT INTO "django_admin_log" VALUES(36,'4','Đồ Đá Banh Clb Real Madrid',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:43:42.826002');
+INSERT INTO "django_admin_log" VALUES(37,'3','Áo Bóng Đá Đẹp, Áo đấu DAS',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:44:03.828544');
+INSERT INTO "django_admin_log" VALUES(38,'2','Áo Bóng Đá Man City',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:44:40.390222');
+INSERT INTO "django_admin_log" VALUES(39,'1','Bộ Quần Áo Bóng Đá Argentina',2,'[{"changed": {"fields": ["description"]}}]',9,1,'2023-12-20 10:44:58.594800');
+INSERT INTO "django_admin_log" VALUES(40,'16','Máy đi bộ tại nhà M181',2,'[{"changed": {"fields": ["Quantity"]}}]',9,1,'2023-12-20 12:05:52.688723');
+INSERT INTO "django_admin_log" VALUES(41,'16','Máy đi bộ tại nhà M181',2,'[]',9,1,'2023-12-20 12:05:58.581152');
+INSERT INTO "django_admin_log" VALUES(42,'15','Dây nhảy không dây FITEZY',2,'[{"changed": {"fields": ["Quantity"]}}]',9,1,'2023-12-20 12:06:23.890592');
+INSERT INTO "django_admin_log" VALUES(43,'14','Giày thể dục thể thao ASIA',2,'[{"changed": {"fields": ["Quantity"]}}]',9,1,'2023-12-20 12:06:35.022571');
+INSERT INTO "django_admin_log" VALUES(44,'13','Giày SNEAKER G015',2,'[{"changed": {"fields": ["Quantity"]}}]',9,1,'2023-12-20 12:06:43.765592');
+INSERT INTO "django_admin_log" VALUES(45,'12','Giày ASICS COURT MZ CREAM BLACK GUM',2,'[{"changed": {"fields": ["Quantity"]}}]',9,1,'2023-12-20 12:06:54.733591');
+INSERT INTO "django_admin_log" VALUES(46,'11','Quần short chạy bộ nam LEEGO - ONSTEP',2,'[{"changed": {"fields": ["Quantity"]}}]',9,1,'2023-12-20 12:07:00.743170');
+INSERT INTO "django_admin_log" VALUES(47,'10','Quần short thể thao Q79',2,'[{"changed": {"fields": ["Quantity"]}}]',9,1,'2023-12-20 12:07:10.351594');
+INSERT INTO "django_admin_log" VALUES(48,'9','Quần short thể thao Q69',2,'[{"changed": {"fields": ["Quantity"]}}]',9,1,'2023-12-20 12:07:18.779344');
+INSERT INTO "django_admin_log" VALUES(49,'8','Áo thun thể thao phối 3 sộc',2,'[{"changed": {"fields": ["Quantity"]}}]',9,1,'2023-12-20 12:07:25.458615');
+INSERT INTO "django_admin_log" VALUES(50,'7','Áo thể thao nam A140',2,'[{"changed": {"fields": ["Quantity"]}}]',9,1,'2023-12-20 12:07:31.151728');
+INSERT INTO "django_admin_log" VALUES(51,'6','Áo ba lỗ nam thể thao A122',2,'[{"changed": {"fields": ["Quantity"]}}]',9,1,'2023-12-20 12:07:37.237573');
+INSERT INTO "django_admin_log" VALUES(52,'5','Áo thun lạnh thể thao A07',2,'[{"changed": {"fields": ["Quantity"]}}]',9,1,'2023-12-20 12:07:46.800607');
+INSERT INTO "django_admin_log" VALUES(53,'4','Đồ Đá Banh Clb Real Madrid',2,'[{"changed": {"fields": ["Quantity"]}}]',9,1,'2023-12-20 12:08:06.488634');
+INSERT INTO "django_admin_log" VALUES(54,'3','Áo Bóng Đá Đẹp, Áo đấu DAS',2,'[{"changed": {"fields": ["Quantity"]}}]',9,1,'2023-12-20 12:08:14.015627');
+INSERT INTO "django_admin_log" VALUES(55,'2','Áo Bóng Đá Man City',2,'[{"changed": {"fields": ["Quantity"]}}]',9,1,'2023-12-20 12:08:25.585614');
+INSERT INTO "django_admin_log" VALUES(56,'1','Bộ Quần Áo Bóng Đá Argentina',2,'[{"changed": {"fields": ["Quantity"]}}]',9,1,'2023-12-20 12:08:33.274662');
+INSERT INTO "django_admin_log" VALUES(57,'5','Áo thể thao',2,'[{"changed": {"fields": ["Image"]}}]',6,1,'2023-12-22 08:53:40.002967');
+INSERT INTO "django_admin_log" VALUES(58,'4','Quần thể thao',2,'[{"changed": {"fields": ["Image"]}}]',6,1,'2023-12-22 08:55:19.261982');
+INSERT INTO "django_admin_log" VALUES(59,'3','Dụng cụ thể thao',2,'[{"changed": {"fields": ["Name", "Image"]}}]',6,1,'2023-12-22 08:59:12.134594');
+INSERT INTO "django_admin_log" VALUES(60,'2','Giày thể thao',2,'[{"changed": {"fields": ["Image"]}}]',6,1,'2023-12-22 09:06:07.300981');
+INSERT INTO "django_admin_log" VALUES(61,'1','Đồ bộ đá banh',2,'[{"changed": {"fields": ["Image"]}}]',6,1,'2023-12-22 09:07:18.059412');
+INSERT INTO "django_admin_log" VALUES(62,'1','Vi Mua hàng vào lúc 2023-12-21 22:52:23',3,'',7,1,'2023-12-22 10:58:43.553763');
+INSERT INTO "django_admin_log" VALUES(63,'3','3',3,'',8,1,'2023-12-22 10:58:51.506367');
+INSERT INTO "django_admin_log" VALUES(64,'2','2',3,'',8,1,'2023-12-22 10:58:51.512734');
+INSERT INTO "django_admin_log" VALUES(65,'1','1',3,'',8,1,'2023-12-22 10:58:51.518748');
+INSERT INTO "django_admin_log" VALUES(66,'5','5',3,'',8,1,'2023-12-22 11:03:02.538752');
+INSERT INTO "django_admin_log" VALUES(67,'4','4',3,'',8,1,'2023-12-22 11:03:02.549785');
+INSERT INTO "django_admin_log" VALUES(68,'2','Phúc Vĩ Mua hàng vào lúc 2023-12-22 17:59:49',3,'',7,1,'2023-12-22 11:03:09.908517');
+INSERT INTO "django_admin_log" VALUES(69,'6','test',1,'[{"added": {}}]',6,1,'2023-12-22 12:31:25.008962');
+INSERT INTO "django_admin_log" VALUES(70,'3','Vi Mua hàng vào lúc 2023-12-22 18:03:46',3,'',7,1,'2023-12-22 12:37:26.486156');
+INSERT INTO "django_admin_log" VALUES(71,'7','7',3,'',8,1,'2023-12-22 12:37:33.444160');
+INSERT INTO "django_admin_log" VALUES(72,'6','6',3,'',8,1,'2023-12-22 12:37:33.450157');
+INSERT INTO "django_admin_log" VALUES(73,'6','test',2,'[{"changed": {"fields": ["Is sub"]}}]',6,1,'2023-12-23 05:44:36.041556');
+INSERT INTO "django_admin_log" VALUES(74,'6','test',3,'',6,1,'2023-12-23 05:45:32.151698');
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");
+CREATE TABLE IF NOT EXISTS "django_content_type" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL);
+INSERT INTO "django_content_type" VALUES(1,'admin','logentry');
+INSERT INTO "django_content_type" VALUES(2,'auth','permission');
+INSERT INTO "django_content_type" VALUES(3,'auth','group');
+INSERT INTO "django_content_type" VALUES(4,'contenttypes','contenttype');
+INSERT INTO "django_content_type" VALUES(5,'sessions','session');
+INSERT INTO "django_content_type" VALUES(6,'app','category');
+INSERT INTO "django_content_type" VALUES(7,'app','customerpurchase');
+INSERT INTO "django_content_type" VALUES(8,'app','order');
+INSERT INTO "django_content_type" VALUES(9,'app','product');
+INSERT INTO "django_content_type" VALUES(10,'app','purchaseitem');
+INSERT INTO "django_content_type" VALUES(11,'app','orderproduct');
+INSERT INTO "django_content_type" VALUES(12,'userauths','customuser');
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");
+CREATE TABLE IF NOT EXISTS "django_migrations" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" datetime NOT NULL);
+INSERT INTO "django_migrations" VALUES(1,'contenttypes','0001_initial','2023-12-20 10:04:37.098546');
+INSERT INTO "django_migrations" VALUES(2,'contenttypes','0002_remove_content_type_name','2023-12-20 10:04:37.124787');
+INSERT INTO "django_migrations" VALUES(3,'auth','0001_initial','2023-12-20 10:04:37.151670');
+INSERT INTO "django_migrations" VALUES(4,'auth','0002_alter_permission_name_max_length','2023-12-20 10:04:37.169126');
+INSERT INTO "django_migrations" VALUES(5,'auth','0003_alter_user_email_max_length','2023-12-20 10:04:37.183118');
+INSERT INTO "django_migrations" VALUES(6,'auth','0004_alter_user_username_opts','2023-12-20 10:04:37.194112');
+INSERT INTO "django_migrations" VALUES(7,'auth','0005_alter_user_last_login_null','2023-12-20 10:04:37.204107');
+INSERT INTO "django_migrations" VALUES(8,'auth','0006_require_contenttypes_0002','2023-12-20 10:04:37.210102');
+INSERT INTO "django_migrations" VALUES(9,'auth','0007_alter_validators_add_error_messages','2023-12-20 10:04:37.221099');
+INSERT INTO "django_migrations" VALUES(10,'auth','0008_alter_user_username_max_length','2023-12-20 10:04:37.231091');
+INSERT INTO "django_migrations" VALUES(11,'auth','0009_alter_user_last_name_max_length','2023-12-20 10:04:37.241085');
+INSERT INTO "django_migrations" VALUES(12,'auth','0010_alter_group_name_max_length','2023-12-20 10:04:37.255047');
+INSERT INTO "django_migrations" VALUES(13,'auth','0011_update_proxy_permissions','2023-12-20 10:04:37.265042');
+INSERT INTO "django_migrations" VALUES(14,'auth','0012_alter_user_first_name_max_length','2023-12-20 10:04:37.274038');
+INSERT INTO "django_migrations" VALUES(15,'userauths','0001_initial','2023-12-20 10:04:37.293027');
+INSERT INTO "django_migrations" VALUES(16,'admin','0001_initial','2023-12-20 10:04:37.312015');
+INSERT INTO "django_migrations" VALUES(17,'admin','0002_logentry_remove_auto_add','2023-12-20 10:04:37.327007');
+INSERT INTO "django_migrations" VALUES(18,'admin','0003_logentry_add_action_flag_choices','2023-12-20 10:04:37.342997');
+INSERT INTO "django_migrations" VALUES(19,'app','0001_initial','2023-12-20 10:04:37.373980');
+INSERT INTO "django_migrations" VALUES(20,'app','0002_initial','2023-12-20 10:04:37.437943');
+INSERT INTO "django_migrations" VALUES(21,'sessions','0001_initial','2023-12-20 10:04:37.453399');
+INSERT INTO "django_migrations" VALUES(22,'app','0003_remove_customerpurchase_customer_and_more','2023-12-20 10:12:22.782652');
+INSERT INTO "django_migrations" VALUES(23,'app','0004_product_quantity','2023-12-20 12:05:28.867454');
+INSERT INTO "django_migrations" VALUES(24,'app','0005_category_image','2023-12-22 08:47:29.647197');
+INSERT INTO "django_migrations" VALUES(25,'app','0006_customerpurchase_email','2023-12-22 12:37:07.690541');
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");
+CREATE TABLE IF NOT EXISTS "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" datetime NOT NULL);
+INSERT INTO "django_session" VALUES('h627ni6bqw84pm6evk4kf211ll4y0fea','.eJxVjDsOwjAQBe_iGln-sg4lfc5g7dprHECOFCcV4u4QKQW0b2beS0Tc1hq3zkucsrgILU6_G2F6cNtBvmO7zTLNbV0mkrsiD9rlOGd-Xg_376Bir98aLbqBgdCEQQGfwaEnBdoBGaZStHXeJqeIEoQUfEEqIVgdbFEAhsX7A-OeN9Y:1rFta5:amxYd8AWVAvLXRn6KE7VeG_IxrC0ExYSoGA72dOu01I','2024-01-03 10:13:37.876683');
+INSERT INTO "django_session" VALUES('x2n6bbm7hs8fwc3nrwzoyq36vhapq69f','.eJxVjDsOwjAQBe_iGln-sg4lfc5g7dprHECOFCcV4u4QKQW0b2beS0Tc1hq3zkucsrgILU6_G2F6cNtBvmO7zTLNbV0mkrsiD9rlOGd-Xg_376Bir98aLbqBgdCEQQGfwaEnBdoBGaZStHXeJqeIEoQUfEEqIVgdbFEAhsX7A-OeN9Y:1rFtdZ:YLhWtuW7cTp3UgBxRWZMJONcyhSgtQ2eFQQmWdeOlsU','2024-01-03 10:17:13.371833');
+INSERT INTO "django_session" VALUES('x59pyxqdv5xahhcwjpm815ipmrt8h5jz','.eJxVjDsOwjAQBe_iGln-sg4lfc5g7dprHECOFCcV4u4QKQW0b2beS0Tc1hq3zkucsrgILU6_G2F6cNtBvmO7zTLNbV0mkrsiD9rlOGd-Xg_376Bir98aLbqBgdCEQQGfwaEnBdoBGaZStHXeJqeIEoQUfEEqIVgdbFEAhsX7A-OeN9Y:1rGLLf:Z166Q7WNa6kBXVZnvCSjd8xVPOg7E3bC7AoZVigHCQ0','2024-01-04 15:52:35.396065');
+INSERT INTO "django_session" VALUES('96g9i9y2kpm2keepfmgww3bo90gppm7i','.eJxVjDsOwjAQBe_iGln-sg4lfc5g7dprHECOFCcV4u4QKQW0b2beS0Tc1hq3zkucsrgILU6_G2F6cNtBvmO7zTLNbV0mkrsiD9rlOGd-Xg_376Bir98aLbqBgdCEQQGfwaEnBdoBGaZStHXeJqeIEoQUfEEqIVgdbFEAhsX7A-OeN9Y:1rGazV:1pBk8VsuXW7Fj3s2TKmAh-miowGE6oxdPF7fz94v1mc','2024-01-05 08:34:45.218876');
+INSERT INTO "django_session" VALUES('l9c3n099938lz7r2dwojglcu6ircxamt','.eJxVjMEOgyAQRP-Fc0MAoaDH3v0Gs8uuxbbRBPBk_Pdq4qG9TWbevE0MsNY0rIXzMJHohBG33w4hvnk-B3rB_FxkXOaaJ5QnIq-1yH4h_jwu9k-QoKTjjWRIOYaWbLDIfgyKAFzjrNaGKXCLWisVovfRem2iG3XbWMA72SPzIY2Qq-i2ff8CMyI7dQ:1rGemu:ynMSEAnunlWK1lfHLXMdqqQPM83BPCn_ZENkcy7LaoE','2024-01-05 12:38:00.558399');
+INSERT INTO "django_session" VALUES('m5h0n16w7dn1j5nm0rgqz4wbwrtla9j5','.eJxVjDsOwjAQBe_iGln-sg4lfc5g7dprHECOFCcV4u4QKQW0b2beS0Tc1hq3zkucsrgILU6_G2F6cNtBvmO7zTLNbV0mkrsiD9rlOGd-Xg_376Bir98aLbqBgdCEQQGfwaEnBdoBGaZStHXeJqeIEoQUfEEqIVgdbFEAhsX7A-OeN9Y:1rGuo4:vrM886WOdwXwG5H2HjNVBX6S5oI8LwzFKSz2MUc2LXE','2024-01-06 05:44:16.756694');
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");
+CREATE TABLE IF NOT EXISTS "userauths_customuser" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NULL, "is_superuser" bool NOT NULL, "username" varchar(150) NOT NULL UNIQUE, "first_name" varchar(150) NOT NULL, "last_name" varchar(150) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "phone_number" varchar(15) NULL, "address" varchar(250) NULL);
+INSERT INTO "userauths_customuser" VALUES(1,'pbkdf2_sha256$600000$V0OxliZ4MFiESep5WDV97N$/4+rrZExH/7Vb9DYi/LTI4iuvMwrF56VTJbbTDe5yHs=','2023-12-23 05:44:16.750975',1,'admin','','','admin@gmail.com',1,1,'2023-12-20 10:05:02.300861',NULL,NULL);
+INSERT INTO "userauths_customuser" VALUES(2,'pbkdf2_sha256$600000$7w6c32H33CVyO0agliOhro$i+M0JWQ8jwWHfL8b1XkbY2YsB3riz+A5E0URhbmp8oo=','2023-12-22 10:59:07.225668',0,'user','Vi','Tran','user@gmail.com',0,1,'2023-12-20 10:12:53.998188','0869238299','Trà Vinh');
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");
+CREATE TABLE IF NOT EXISTS "userauths_customuser_groups" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "customuser_id" bigint NOT NULL REFERENCES "userauths_customuser" ("id") DEFERRABLE INITIALLY DEFERRED, "group_id" integer NOT NULL REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED);
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");
+CREATE TABLE IF NOT EXISTS "userauths_customuser_user_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "customuser_id" bigint NOT NULL REFERENCES "userauths_customuser" ("id") DEFERRABLE INITIALLY DEFERRED, "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED);
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "userauths_customuser_groups_customuser_id_group_id_f7e837e2_uniq" ON "userauths_customuser_groups" ("customuser_id", "group_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_customuser_id_1c532c27" ON "userauths_customuser_groups" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_groups_group_id_edd0f166" ON "userauths_customuser_groups" ("group_id");
+CREATE UNIQUE INDEX "userauths_customuser_user_permissions_customuser_id_permission_id_07e3e837_uniq" ON "userauths_customuser_user_permissions" ("customuser_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_customuser_id_f73beaad" ON "userauths_customuser_user_permissions" ("customuser_id");
+CREATE INDEX IF NOT EXISTS "userauths_customuser_user_permissions_permission_id_8213842c" ON "userauths_customuser_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE INDEX IF NOT EXISTS "app_category_slug_b059cea8" ON "app_category" ("slug");
+CREATE UNIQUE INDEX "app_product_category_product_id_category_id_73528da5_uniq" ON "app_product_category" ("product_id", "category_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_product_id_c059d7b6" ON "app_product_category" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_product_category_category_id_369a9753" ON "app_product_category" ("category_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_customer_purchase_id_5c6c88e8" ON "app_purchaseitem" ("customer_purchase_id");
+CREATE INDEX IF NOT EXISTS "app_purchaseitem_product_id_6008575c" ON "app_purchaseitem" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_order_id_69984434" ON "app_orderproduct" ("order_id");
+CREATE INDEX IF NOT EXISTS "app_orderproduct_product_id_95d1e4e6" ON "app_orderproduct" ("product_id");
+CREATE INDEX IF NOT EXISTS "app_category_sub_category_id_7b7f6a7f" ON "app_category" ("sub_category_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "app_order_customer_id_7c27c407" ON "app_order" ("customer_id");

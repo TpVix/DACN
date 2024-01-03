@@ -1,25 +1,34 @@
 from django.utils import timezone
+from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User 
 from ckeditor.fields import RichTextField
 from django.shortcuts import get_object_or_404
+from django import forms
+from django.contrib.auth.admin import UserAdmin
+
+from userauths.models import CustomUser
 # change forms register django
-class CreaterUserForm(UserCreationForm):
-    class Meta:
-        model = User
-        fields = ['username','email','first_name','last_name','password1','password2']
 
 class Category(models.Model):
     name = models.CharField(max_length=200, null=True)
+    image = models.ImageField(null=True,blank=True)
     sub_category = models.ForeignKey('self', on_delete=models.CASCADE, related_name='sub_categories', null=True, blank=True)
     is_sub = models.BooleanField(default=True)
     slug = models.SlugField(max_length=200, null=True)
     def __str__(self):
         return self.name
-
+    @property
+    def ImgURL (self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
+    
 class Product(models.Model):
     name = models.CharField(max_length=200, null=True, blank=False)
+    quantity = models.IntegerField(default=0, null=True, blank=False)
     description = RichTextField()
     price = models.DecimalField(max_digits=10, decimal_places=0)
     category = models.ManyToManyField(Category, related_name='Categories')
@@ -37,10 +46,10 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=False)
+    customer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=False)
     order_date = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=False)
-    transaction_id = models.CharField(max_length=200, null=True)
+    transaction_id = models.CharField(max_length=200, null=True, blank=False)
 
     def __str__(self):
         return str(self.id)
@@ -67,9 +76,10 @@ class OrderProduct(models.Model):
         return total
 
 class CustomerPurchase(models.Model):
-    customer_name = models.CharField(max_length=100)
-    address = models.CharField(max_length=200)
-    phone_number = models.CharField(max_length=20)
+    customer_name = models.CharField(max_length=100, null=True, blank=False)
+    address = models.CharField(max_length=200, null=True, blank=False)
+    email = models.CharField(max_length=200, null=True, blank=False)
+    phone_number = models.CharField(max_length=20, null=True, blank=False)
     products = models.ManyToManyField(Product, through='PurchaseItem')
     purchase_date = models.DateTimeField(default=timezone.now)
     total_quantity = models.PositiveIntegerField(default=0)
@@ -79,15 +89,17 @@ class CustomerPurchase(models.Model):
         local_purchase_date = timezone.localtime(self.purchase_date)
         return f"{self.customer_name} Mua hàng vào lúc {local_purchase_date.strftime('%Y-%m-%d %H:%M:%S')}"
 
+
 class PurchaseItem(models.Model):
     customer_purchase = models.ForeignKey(CustomerPurchase, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)  # Hoặc bất kỳ trường nào khác bạn muốn lưu thông tin sản phẩm
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 
     # Các trường thông tin khác nếu cần
 
     def __str__(self):
-        return f"Tên sản phẩm: {self.product.name} - Số lượng: {self.quantity}"
+        return f"Khách hàng: {self.customer_purchase}-Tên sản phẩm: {self.product.name} - Số lượng: {self.quantity}"
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         # Tính toán tổng giá và tổng số lượng của tất cả PurchaseItem liên quan
@@ -100,3 +112,13 @@ class PurchaseItem(models.Model):
         purchase.total_quantity = total_quantity
         purchase.total_price = total_price
         purchase.save()
+
+
+class Profile (models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    auth_token = models.CharField(max_length=250)
+    is_verified = models.BooleanField(default = False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username

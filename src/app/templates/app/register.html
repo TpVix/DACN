@@ -15,45 +15,76 @@
         <link rel="stylesheet" href="">
     </head>
     <body style="background-color:#fafafa; position: relative;">
+        <div class="bg-log-reg">
         <form method = "POST" action="">
             {% csrf_token %}
         <div class="bg-register">
-            <a class="navbar-brand" style="display: flex; justify-content: center;" href="{% url 'home'%}"><img src="{% static "app/images/logo.jpg" %}" width="70px" alt=""></a>
-            <h1 style="margin-left: 38%;">Đăng ký</h1>
+            <a class="navbar-brand" style="display: flex; justify-content: center;" href="{% url 'dashboard'%}"><img src="{% static "app/images/logo.jpg" %}" width="70px" alt=""></a>
+            <h1 style="text-align:center;">Đăng ký</h1>
+            {% if messages %}
+                
+                        {% for message in messages %}
+                        
+                            <li style="width: 42%;">
+                                <label style="color:red;" id="message">{{message}}</label> <br>
+                               
+                            </li>
+                            
+                       
+                        {% endfor %}
+                  
+                    {% endif %}
+            <ul style="display:flex;">
+                
+                <li style="width: 42%;">
+                    <label for="">First name:</label><br>
+                    <input type="text" name="first_name" id="id_first_name">
+                </li>
+                <li style="width: 42%; margin-left: 8%;">
+                    <label for="">Last name:</label><br>
+                    <input type="text" name="last_name" id="id_last_name">
+                </li>
+            </ul>
+           
             <ul>
                 <li >
                   <label for="">Tên đăng ký:</label><br>
-                  {{form.username}}
+                  <input type="text" name="username" id="id_username">
+                  
                 </li>
             </ul>
-            <ul>
-                <li>
+            <ul style="display:flex;">
+                <li style="width: 42%;">
                     <label for="">Email:</label><br>
-                    {{form.email}}
+                    <input type="email" name="email" id="id_email">
+                    
                 </li>
+                <li style="width: 42%; margin-left: 8%;">
+                    <label for="">Số điện thoại:</label><br>
+                    <input type="number" name="phone_number" id="id_phone_number">
+        
+                </li>
+                
             </ul>
             <ul>
                 <li>
-                    <label for="">First name:</label><br>
-                    {{form.first_name}}
+                    <label for="">Địa chỉ:</label><br>
+                    <input type="text" name="address" id="id_address">
+              
                 </li>
-            </ul>
-            <ul>
-                <li>
-                    <label for="">Last name:</label><br>
-                    {{form.last_name}}
-                </li>
-            </ul>
+            </ul>        
             <ul>
                 <li>
                     <label for="">Mật khẩu:</label><br>
-                    {{form.password1}}
+                    <input type="password" name="password1" id="id_password1">
+                
                 </li>
             </ul>
             <ul>
                 <li>
                     <label for="">Xác nhận mật khẩu:</label><br>
-                    {{form.password2}}
+                    <input type="password" name="password2" id="id_password2">
+
                 </li>
             </ul>
             <ul>
@@ -66,5 +97,6 @@
             </ul>
        </div>
     </form>
+</div>
     </body>
 </html>

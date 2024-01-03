@@ -1,6 +1,7 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% block cart %}
+<div style=" min-height:80vh; width:80%;margin-left:12%;" >
 <div>
 <div class="tb_cart">
 <table  width="100%" >
@@ -12,23 +13,31 @@
         <td class="item_cart" width="5%"></td>
     </tr>
     {% for item in items %}
-    <tr >
-        <td class="item_cart"><img height="100px" src="{{item.product.ImgURL}}"></td>
-        <td class="item_cart">{{item.product.name}}</td>
-        <td class="item_cart">{{item.product.price}} VNĐ</td>
-        <td class="item_cart"><a class="quantity_cart" data-product={{item.product.id}} data-action = "add" style="cursor:pointer;">+</a> {{item.quantity}} <a class="quantity_cart" data-product={{item.product.id}} data-action = "remove" style="cursor:pointer;">-</a></td>
-        <td class="item_cart">{{order.get_total_item}}</td>
+    <tr>
+        <td class="item_cart"><img height="100px" src="{{ item.product.ImgURL }}"></td>
+        <td class="item_cart">{{ item.product.name }}</td>
+        <td class="item_cart">{{ item.product.price }} VNĐ</td>
+        <td class="item_cart">
+            {% if item.product.quantity > 0 %}
+                <a class="quantity_cart" data-product="{{ item.product.id }}" data-action="add" style="cursor:pointer;">+</a>
+            {% endif %}
+            {{ item.quantity }}
+            <a class="quantity_cart" data-product="{{ item.product.id }}" data-action="remove" style="cursor:pointer;">-</a>
+        </td>
+        <td class="item_cart">{{ order.get_total_item }}</td>
     </tr>
-    {% endfor %}
+{% endfor %}
+
     
 </table>
 
 </div>
 <div class="all_item">
-    <span><a href="{% url 'home'%}" style="text-decoration: none; color: black;border:1px solid black;padding:5px;margin-top:5px;">← Continue Shopping</a></span>
-    <span>Số lượng: {{order.get_cart_items}}</span>
-    <span>Tổng:  {{order.get_cart_total}} VNĐ</span>
-    <span><a type="button" class="btn_checkout" href="{%url 'checkout'%}">Checkout</a></span>
+    <a class="btn_continue" href="{% url 'home'%}" style="text-decoration: none; color: black;border:1px solid black;padding:5px;">← Tiếp tục mua hàng</a>
+    <p>Số lượng: {{order.get_cart_items}}</p>
+    <p>Tổng:  {{order.get_cart_total}} VNĐ</p>
+    <a type="button" class="btn_checkout" href="{%url 'checkout'%}">Đến thanh toán</a>
+</div>
 </div>
 </div>
 {% endblock cart %}

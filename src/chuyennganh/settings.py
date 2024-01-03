@@ -32,6 +32,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'jazzmin',
+    'django_light',
+    'admin_tools_stats',
+    'django_nvd3',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,10 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'userauths',
+    'dbbackup',
     'ckeditor',
     'ckeditor_uploader',
+    'userauths.apps.UserauthsConfig',
+    'django_extensions',
 ]
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'  # Hoặc thay đổi cho storage khác nếu cần thiết
+DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR / 'backup'}  # Đường dẫn đến thư mục lưu trữ sao lưu
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,7 +66,7 @@ ROOT_URLCONF = 'chuyennganh.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates2')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,5 +141,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'app/static/app/images')
 CKEDITOR_UPLOAD_PATH = "static/app/images/images_all/"
 
 JAZZMIN_SETTINGS = {
-    "site_brand": "Shop Sport",
+    "site_brand": "Shop Sports",
+    "site_logo": "app/images/logo.jpg",
 }
+
+AUTH_USER_MODEL = 'userauths.CustomUser'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'vitran641@gmail.com'
+EMAIL_HOST_PASSWORD = 'ingm qxdh opak qjdt'

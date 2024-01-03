@@ -39,19 +39,19 @@
     <body style="background-color:#f5f5f5;">
         <nav class="navbar navbar-expand-lg" style="background-color:black;">
             <div class="container-fluid">
-              <a class="navbar-brand" href="{% url 'home'%}"><img src="{% static "app/images/logo.jpg" %}" width="70px" alt=""></a>
+              <a class="navbar-brand" href="{% url 'dashboard'%}"><img src="{% static "app/images/logo.jpg" %}" width="70px" alt=""></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{% url 'home'%}">Trang chủ</a>
+                    <a class="nav-link" aria-current="page" href="{% url 'dashboard'%}">Trang chủ</a>
                   </li>
                   
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Sản phẩm
+                      Danh mục
                     </a>
                     <ul style="padding: 0px;" class="dropdown-menu">
                       {% for category in categories %}
@@ -61,11 +61,12 @@
                     </ul>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Giới thiệu</a>
+                    <a class="nav-link" href="{% url 'home' %}">Sản phẩm</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Liên hệ</a>
+                    <a class="nav-link" href="{% url 'aboutme' %}">Giới thiệu</a>
                   </li>
+                
                 </ul>
                 <form class="d-flex" role="search" method="POST" action={% url "search" %}>
                   {% csrf_token %}
@@ -73,41 +74,78 @@
                   <button class="btn btn-outline-success" type="submit" style="color: white;">Tìm kiếm</button>
                 </form>
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                  {% if request.user.is_authenticated %}
-                  <li class="nav-item">
-                      <span class="nav-link">Xin chào: {{ request.user }}</span>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="{% url 'logout' %}">Đăng xuất</a>
-                  </li>
-                  {% else %}
-                  <li class="nav-item nav-login">
-                      <a class="nav-link" href="{% url 'login' %}">Đăng nhập</a>
-                  </li>
-                  <li class="nav-item nav-register">
-                      <a class="nav-link" href="{% url 'register' %}">Đăng ký</a>
-                  </li>
-                  {% endif %}
-                  <li class="nav-item">
-                    <a class="nav-link" id="cart" href="{% url "cart" %}"><i class="fa-solid fa-cart-shopping" style="color: white;"></i>
+                  {% if request.user.is_authenticated and not user.is_superuser %}
                      
-                      <span >{{CartItems}}</span>
-                      
-                    </a>
-                  </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Xin chào: {{ request.user.first_name }}
+                        </a>
+                        <ul style="padding: 0px;" class="dropdown-menu">
+                         
+                          <li><a class="dropdown-item" href="{% url "editprofile" %}">Trang cá nhân</a></li>
+                          <hr class="dropdown-divider">
+                          <li><a class="dropdown-item" href="{% url "change_password" %}">Đổi mật khẩu</a></li>
+                          <hr class="dropdown-divider">
+                          <li><a class="dropdown-item" href="{% url "logout"%}">Đăng xuất</a></li>
+                          <hr class="dropdown-divider">
+                        </ul>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="cart" href="{% url "cart" %}"><i class="fa-solid fa-cart-shopping" style="color: white;"></i>
+                         
+                          <span >{{CartItems}}</span>
+                          
+                        </a>
+                      </li>
+                  {% elif request.user.is_superuser %}
+                      <li class="nav-item nav-login">
+                          <a class="nav-link" href="{% url 'login' %}">Đăng nhập</a>
+                      </li>
+                      <li class="nav-item nav-register">
+                          <a class="nav-link" href="{% url 'register' %}">Đăng ký</a>
+                      </li>
+                  {% elif not request.user.is_authenticated %}
+                      <li class="nav-item nav-login">
+                          <a class="nav-link" href="{% url 'login' %}">Đăng nhập</a>
+                      </li>
+                      <li class="nav-item nav-register">
+                          <a class="nav-link" href="{% url 'register' %}">Đăng ký</a>
+                      </li>
+
+                  {% endif %}
+
+                 
                 </ul>
               </div>
             </div>
           </nav>
             {% block banner %}{% endblock banner %}
-          <div style=" min-height:80vh; width:80%;margin-left:11%;" class="main-content"> 
+          <div class="main-content"> 
             {% block cart %}{% endblock cart %}
             {% block checkout %}{% endblock checkout %}
             {% block main-content %}{% endblock main-content %}
             {% block infor %}{% endblock infor %}
             {% block search %}{% endblock search %}
           </div>
-        <footer class="footer">Copyright 2023</footer>
+        <footer class="footer">
+        <div style="width:80%;margin-left:10%; padding:5px;">
+          <div >
+            <h3>Shop Sports</h3>
+            <p>Trải nghiệm mua sắm trực tuyến tuyệt vời với sự đa dạng, chất lượng sản phẩm và dịch vụ hỗ trợ tận tình, luôn đem đến niềm vui cho mọi khách hàng tại trang web bán quần áo này.<p>
+          </div>
+          <div style="display: flex; flex-direction: column;align-items: center;">
+            <h3>Liên hệ</h3>
+            
+              <p style="text-align:center;"><i class="fa-solid fa-location-dot"></i> Khóm 7, Phường 8, Thành Phố Trà Vinh, Trà Vinh
+              <i class="fa-solid fa-phone"></i> +086 9238 299
+             <i class="fa-solid fa-envelope"></i> vitran641@gmail.com</p>
+             <div style="width:15%; display:flex; justify-content: space-around; margin-top:20px;">
+              <a href="#"> <i class="fa-brands fa-facebook"></i></a> <a href="#"><i class="fa-brands fa-google"></i></a> <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+             </div> 
+          </div>
+          
+        </div>
+        </footer>
         
         
       </script>

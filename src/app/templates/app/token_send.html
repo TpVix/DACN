@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% static 'app/css/style.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="">
+    </head>
+    <body style="background-color:#fafafa;">
+        <div class="bg-log-reg">
+        <form method = "POST" action="">
+            {% csrf_token %}
+        <div class="bg-login">
+            <a class="navbar-brand" style="display: flex; justify-content: center;" href="{% url 'dashboard'%}"><img src="{% static "app/images/logo.jpg" %}" width="70px" alt=""></a>
+            <h1 style="text-align:center;">Email xác nhận đã được gửi đi</h1>
+            <div style="text-align:center;">
+               
+                  <label for="" >Vui lòng kiểm tra Email của bạn để xác minh</label>
+                
+            </div>
+            &nbsp
+        </div>
+        <script src="" async defer></script>
+    </form>
+</div>
+    </body>
+</html>

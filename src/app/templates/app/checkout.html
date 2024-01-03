@@ -1,7 +1,7 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% block checkout %}
-
+<div style=" min-height:80vh; width:80%;margin-left:12%;" >
 <div class="container">
 
 <form method="post">
@@ -10,10 +10,19 @@
         <h2>Thông tin khách hàng</h2>
         <div>
             {% csrf_token %}
-            {{ form.as_p }}
+            <label for="">Tên khách hàng:</label><br>
+            {{ form.customer_name }}
+            <label for="">Email:</label><br>
+            {{ form.email }}
+            <label for="">Địa chỉ:</label><br>
+            {{ form.address }}
+            <label for="">Số điện thoại:</label><br>
+            {{ form.phone_number }}
+            <br>
         </div>
-        <div>
-            <input name="" id="" class="btn btn-outline-success" type="submit" value="Xác nhập">
+        <br>
+        <div style="text-align:end;" >
+            <input name="" id="" class="btn_success" type="submit" value="Xác nhập">
         </div>
     </div>
 </div> 
@@ -24,7 +33,7 @@
 <div class="border_checkout box2">
     <table  width="100%" >
         <tr>
-            <td height="50px"><a style="text-decoration: none; color: black; border:1px solid black;padding:5px;margin-top:5px;" href="{% url 'cart' %}">← Back cart</a></td>
+            <td height="50px"><a class="btn_back_cart" href="{% url 'cart' %}">← Về giỏ hàng</a></td>
         </tr>
         <tr>  
             <td>Thông tin sản phẩm</td>
@@ -51,7 +60,7 @@
     
 </div>
 
-
+</div>
 {% endblock checkout %}
 
 

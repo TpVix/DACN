@@ -1,39 +1,36 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% block main-content %}
-
-{% for product in Products %}
-
-    <div style="background-color:white; width:21.5%; height:300px; margin-left:20px; margin-top:10px;" class="item_product">
-    
-    <a href="{% url 'product_detail' id=product.id%}" class="a" style="width:100%;">
-        <img class="border_product" src="{{product.image.url}}" style="margin-bottom: 18px;margin-top: 18px; margin-left:5%;" width="87%" height="60%" align="center" class="img_product"><br>
-        <hr style="margin:0px; width:100%;">
-        <div style="width: 94%;margin-left: 3%;"> 
-            <p style="margin:0;">{{product.name}}</p>
-            
-            <p>Giá: {{product.price}} VNĐ</p>
-        </div>   
-    </a>
+<div style="display:flex; background-color:white;">
+  <div style="width:18%; margin-right:2%;border:1px ridge #c0c1c2; ">
+    <h4 style="width:96%;margin-left:2%;">Danh mục</h4>
+    <div style="width:94%;margin-left:3%;">
+      {% for category in categories %}
+      <hr>
+      <a style="color:black;" class="category_item" href="{% url "category" %}?category={{category.slug}}">{{category.name}}</a>
+      {% endfor %}
     </div>
- 
-{% endfor %}
-{% endblock main-content %}
-{% block banner %}
-<div id="carouselExampleDark" class="carousel carousel-dark slide">    
-    <div class="carousel-inner">
-      <div class="carousel-item active" data-bs-interval="10000" >
-        <div id="banner">
-          <a ><img src="{% static "app/images/banner1.jpg" %}"  alt="..."  style="width:80%; margin-left:10%; height:400px;"></a>
-          <a ><img src="{% static "app/images/banner2.jpg" %}"  alt="..."  style="width:80%; margin-left:10%;height:400px;"></a>   
-        </div>
-       <div class="carousel-caption d-none d-md-block" style="background-color: white; width:200px; left:43%">
-          <h5>Shop Sport</h5>
-          
-        </div>
-      </div>
+  </div>
+  <div style=" min-height:80vh; width:80%; border:1px ridge #c0c1c2; background-color:#f5f5f5;" >
+  {% for product in Products %}
+  
       
-    </div>
-   
+      <div style="background-color:white; width:22.2%; height:300px; margin-left:20px; margin-top:10px; " class="item_product">
+      
+      <a href="{% url 'product_detail' id=product.id%}" class="a" style="width:100%;">
+          <img class="border_product" src="{{product.image.url}}" style="margin-bottom: 18px;margin-top: 18px; margin-left:5%;" width="87%" height="60%" align="center" class="img_product"><br>
+          <hr style="margin:0px; width:100%;">
+          <div style="width: 94%;margin-left: 3%;"> 
+              <p style="margin:0; ">{{product.name}}</p>
+              
+              <p style="color:red;">₫{{product.price}} VNĐ</p>
+          </div>   
+      </a>
+      </div>
+    
+  {% endfor %}
+  </div>
 </div>
-{% endblock banner %}
+
+{% endblock main-content %}
+

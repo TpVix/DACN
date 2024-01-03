@@ -14,17 +14,18 @@
         <link href="{% static 'app/css/style.css' %}" rel="stylesheet">
         <link rel="stylesheet" href="">
     </head>
-    <body style="background-color:#fafafa; position: relative;">
+    <body style="background-color:#fafafa;">
+        <div class="bg-log-reg">
         <form method = "POST" action="">
             {% csrf_token %}
-        <div class="bg-register">
-            <a class="navbar-brand" style="display: flex; justify-content: center;" href="{% url 'home'%}"><img src="{% static "app/images/logo.jpg" %}" width="70px" alt=""></a>
+        <div class="bg-login">
+            <a class="navbar-brand" style="display: flex; justify-content: center;" href="{% url 'dashboard'%}"><img src="{% static "app/images/logo.jpg" %}" width="70px" alt=""></a>
             <h1 style="margin-left: 38%;">Đăng nhập</h1>
             <ul>
                 <li >
                   <label for="">Tên đăng nhập:</label>
                   {% for message in messages %}
-                  <label id="message">{{message}}</label>
+                  <label style="color:red;" id="message">{{message}}</label>
                   {% endfor %}
                   <br>
                   <input type="text" class="ip-item"  name="username" id="" aria-describedby="helpId" placeholder="">
@@ -47,5 +48,6 @@
         </div>
         <script src="" async defer></script>
     </form>
+</div>
     </body>
 </html>
