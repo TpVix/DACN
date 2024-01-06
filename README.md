@@ -27,3 +27,8 @@
   ```bash
     python manage.py runserver
   ```
+***
+## Thông tin liên hệ
+- Họ tên: Trần Phúc Vĩ
+- SĐT: 0869238299
+- Email: vitran641@gmail.com
