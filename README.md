@@ -11,7 +11,7 @@
     git clone https://github.com/TpVix/cn-da20tta-tranphucvi-eshop-django.git
   ```
 - Sau đó truy cập vào bên trong dự án
- ```bash
+  ```bash
     cd cn-da20tta-tranphucvi-eshop-django
     cd src
   ```
