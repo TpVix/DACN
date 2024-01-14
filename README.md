@@ -17,6 +17,8 @@
   ```
 - Cài đặt các gói cần thiết
   ```bash
+    pip install jazzmin
+  
     pip install django-admin-charts
 
     pip install django-light
