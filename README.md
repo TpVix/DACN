@@ -15,6 +15,16 @@
     cd cn-da20tta-tranphucvi-eshop-django
     cd src
   ```
+- Cài đặt các gói cần thiết
+  ```bash
+    pip install django-admin-charts
+
+    pip install django-light
+
+    pip install django-ckeditor
+    
+    pip install django-extensions
+  ```
 - Khởi chạy lệnh tạo cơ sở dữ liệu
   ```bash
     python manage.py makemigrations
